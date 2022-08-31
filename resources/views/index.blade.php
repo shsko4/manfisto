@@ -4,6 +4,15 @@
     <link href="{{ URL::asset('assets/plugins/owl-carousel/owl.carousel.css') }}" rel="stylesheet" />
     <!-- Maps css -->
     <link href="{{ URL::asset('assets/plugins/jqvmap/jqvmap.min.css') }}" rel="stylesheet">
+    <!-- Internal Data table css -->
+<link href="{{ URL::asset('assets/plugins/datatable/css/dataTables.bootstrap4.min.css') }}" rel="stylesheet" />
+<link href="{{ URL::asset('assets/plugins/datatable/css/buttons.bootstrap4.min.css') }}" rel="stylesheet">
+<link href="{{ URL::asset('assets/plugins/datatable/css/responsive.bootstrap4.min.css') }}" rel="stylesheet" />
+<link href="{{ URL::asset('assets/plugins/datatable/css/jquery.dataTables.min.css') }}" rel="stylesheet">
+<link href="{{ URL::asset('assets/plugins/datatable/css/responsive.dataTables.min.css') }}" rel="stylesheet">
+<link href="{{ URL::asset('assets/plugins/select2/css/select2.min.css') }}" rel="stylesheet">
+<!--Internal   Notify -->
+<link href="{{ URL::asset('assets/plugins/notify/css/notifIt.css') }}" rel="stylesheet" />
     @vite('resources/css/app.css')
     @livewireStyles
 @endsection
@@ -18,11 +27,11 @@
         </div>
         <div class="main-dashboard-header-right">
             <!--<div>
-                   <label class="tx-13">Customer Ratings</label>
-                   <div class="main-star">
-                    <i class="typcn typcn-star active"></i> <i class="typcn typcn-star active"></i> <i class="typcn typcn-star active"></i> <i class="typcn typcn-star active"></i> <i class="typcn typcn-star"></i> <span>(14,873)</span>
-                   </div>
-                  </div>-->
+                           <label class="tx-13">Customer Ratings</label>
+                           <div class="main-star">
+                            <i class="typcn typcn-star active"></i> <i class="typcn typcn-star active"></i> <i class="typcn typcn-star active"></i> <i class="typcn typcn-star active"></i> <i class="typcn typcn-star"></i> <span>(14,873)</span>
+                           </div>
+                          </div>-->
             @if (auth()->user()->hasRole('owner'))
                 <div class="text-center">
                     <label class="tx-13">تحصيل المنفستو الشهري</label>
@@ -55,29 +64,82 @@
         </div>
     @endcan
 
+    <div class="card-body">
+        <div class="table-responsive">
+            <table id="example" class="table key-buttons text-md-nowrap">
+                <thead>
+                    <tr style="width: auto; align-content: flex-end">
+                        <th class="wd-10p border-bottom-0">#</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (\App\Models\QR::all() as $qr)
+                        <tr style="width: auto">
+
+
+                            <td>{{ QrCode::size(200)->format('svg')->generate($qr->qr) }}
+                                <p class="mt-2">{{ $qr->qr }}</p></td>
+
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!--
+    <div class="content-between">
+
+        @foreach (\App\Models\QR::all() as $qr)
+            <div class="mt-2">
+                <a href="#">{{ QrCode::size(200)->format('svg')->generate($qr->qr) }}</a>
+                <p class="mt-2">{{ $qr->qr }}</p>
+            </div>
+            <div class="text-success text-center"></div>
+        @endforeach
+    </div>-->
+
+
     </div><!-- main-content -->
     </div><!-- container -->
     @livewireScripts
 @endsection
 @section('js')
-    <!--Internal  Chart.bundle js
-            <script src="{{ URL::asset('assets/plugins/chart.js/Chart.bundle.min.js') }}"></script>-->
-    <!-- Moment js
-            <script src="{{ URL::asset('assets/plugins/raphael/raphael.min.js') }}"></script>-->
-    <!--Internal  Flot js
-            <script src="{{ URL::asset('assets/plugins/jquery.flot/jquery.flot.js') }}"></script>
-            <script src="{{ URL::asset('assets/plugins/jquery.flot/jquery.flot.pie.js') }}"></script>
-            <script src="{{ URL::asset('assets/plugins/jquery.flot/jquery.flot.resize.js') }}"></script>
-            <script src="{{ URL::asset('assets/plugins/jquery.flot/jquery.flot.categories.js') }}"></script>
-            <script src="{{ URL::asset('assets/js/dashboard.sampledata.js') }}"></script>
-            <script src="{{ URL::asset('assets/js/chart.flot.sampledata.js') }}"></script>-->
-    <!--Internal Apexchart js
-            <script src="{{ URL::asset('assets/js/apexcharts.js') }}"></script>-->
-    <!-- Internal Map
-            <script src="{{ URL::asset('assets/plugins/jqvmap/jquery.vmap.min.js') }}"></script>
-            <script src="{{ URL::asset('assets/plugins/jqvmap/maps/jquery.vmap.usa.js') }}"></script>
-            <script src="{{ URL::asset('assets/js/modal-popup.js') }}"></script>-->
-    <!--Internal  index js
-            <script src="{{ URL::asset('assets/js/index.js') }}"></script>
-            <script src="{{ URL::asset('assets/js/jquery.vmap.sampledata.js') }}"></script>-->
+    <!-- Internal Data tables -->
+
+<script src="{{ URL::asset('assets/plugins/datatable/js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ URL::asset('assets/plugins/datatable/js/dataTables.dataTables.min.js') }}"></script>
+
+<script src="{{ URL::asset('assets/plugins/datatable/js/responsive.dataTables.min.js') }}"></script>
+<script src="{{ URL::asset('assets/plugins/datatable/js/jquery.dataTables.js') }}"></script>
+<script src="{{ URL::asset('assets/plugins/datatable/js/dataTables.bootstrap4.js') }}"></script>
+<script src="{{ URL::asset('assets/plugins/datatable/js/dataTables.buttons.min.js') }}"></script>
+<script src="{{ URL::asset('assets/plugins/datatable/js/buttons.bootstrap4.min.js') }}"></script>
+<script src="{{ URL::asset('assets/plugins/datatable/js/jszip.min.js') }}"></script>
+<script src="{{ URL::asset('assets/plugins/datatable/js/pdfmake.min.js') }}"></script>
+<script src="{{ URL::asset('assets/plugins/datatable/js/vfs_fonts.js') }}"></script>
+<script src="{{ URL::asset('assets/plugins/datatable/js/buttons.html5.min.js') }}"></script>
+<script src="{{ URL::asset('assets/plugins/datatable/js/buttons.print.min.js') }}"></script>
+<script src="{{ URL::asset('assets/plugins/datatable/js/buttons.colVis.min.js') }}"></script>
+<script src="{{ URL::asset('assets/plugins/datatable/js/dataTables.responsive.min.js') }}"></script>
+<script src="{{ URL::asset('assets/plugins/datatable/js/responsive.bootstrap4.min.js') }}"></script>
+
+<script src="{{ URL::asset('assets/plugins/datatable/js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ URL::asset('assets/plugins/datatable/js/dataTables.dataTables.min.js') }}"></script>
+
+<script src="{{ URL::asset('assets/plugins/datatable/js/responsive.dataTables.min.js') }}"></script>
+<script src="{{ URL::asset('assets/plugins/datatable/js/jquery.dataTables.js') }}"></script>
+<script src="{{ URL::asset('assets/plugins/datatable/js/dataTables.bootstrap4.js') }}"></script>
+<script src="{{ URL::asset('assets/plugins/datatable/js/dataTables.buttons.min.js') }}"></script>
+<script src="{{ URL::asset('assets/plugins/datatable/js/dataTables.responsive.min.js') }}"></script>
+<script src="{{ URL::asset('assets/plugins/datatable/js/responsive.bootstrap4.min.js') }}"></script>
+<!--Internal  Datatable js -->
+<script src="{{ URL::asset('assets/js/table-data.js') }}"></script>
+<!--Internal  Notify js -->
+<script src="{{ URL::asset('assets/plugins/notify/js/notifIt.js') }}"></script>
+<script src="{{ URL::asset('assets/plugins/notify/js/notifit-custom.js') }}"></script>
+<!-- Internal Modal js-->
+<script src="{{ URL::asset('assets/js/modal.js') }}"></script>
 @endsection
