@@ -1,0 +1,72 @@
+ Carbon\Exceptions\InvalidFormatException                                                                                   
+                                                                                                                            
+A textual day could not be found                                                                                            
+expected data found.                                                                                                        
+expected data found.                                                                                                        
+two digit minute could not be found                                                                                         
+ailing data                                                                                                                 
+                                                                                                                            
+at C:\xampp\htdocs\manfisto\vendor\nesbot\carbon\src\Carbon\Traits\Creator.php:676                                          
+  672▕             return $instance;                                                                                        
+  673▕         }                                                                                                            
+  674▕                                                                                                                      
+  675▕         if (static::isStrictModeEnabled()) {                                                                         
+➜ 676▕             throw new InvalidFormatException(implode(PHP_EOL, $lastErrors['errors']));                               
+  677▕         }                                                                                                            
+  678▕                                                                                                                      
+  679▕         return false;                                                                                                
+  680▕     }                                                                                                                
+                                                                                                                            
+1   C:\xampp\htdocs\manfisto\vendor\nesbot\carbon\src\Carbon\Traits\Creator.php:699                                         
+    Carbon\Carbon::rawCreateFromFormat("D M d H:i:s Y", "7.0.0.1:61837 Accepted")                                           
+                                                                                                                            
+2   C:\xampp\htdocs\manfisto\vendor\laravel\framework\src\Illuminate\Foundation\Console\ServeCommand.php:238                
+    Carbon\Carbon::createFromFormat("D M d H:i:s Y", "7.0.0.1:61837 Accepted")    
+
+
+------------------------------------------------------------------	
+
+
+2022-08-24 11:21:43                                                                                                                                              
+ Carbon\Exceptions\InvalidFormatException                                                                                                                        
+                                                                                                                                                                 
+A textual day could not be found                                                                                                                                 
+textual month could not be found                                                                                                                                 
+                                                                                                                                                                 
+at C:\xampp\htdocs\manfisto\vendor\nesbot\carbon\src\Carbon\Traits\Creator.php:676                                                                               
+  672▕             return $instance;                                                                                                                             
+  673▕         }                                                                                                                                                 
+  674▕                                                                                                                                                           
+  675▕         if (static::isStrictModeEnabled()) {                                                                                                              
+➜ 676▕             throw new InvalidFormatException(implode(PHP_EOL, $lastErrors['errors']));                                                                    
+  677▕         }                                                                                                                                                 
+  678▕                                                                                                                                                           
+  679▕         return false;                                                                                                                                     
+  680▕     }                                                                                                                                                     
+                                                                                                                                                                 
+1   C:\xampp\htdocs\manfisto\vendor\nesbot\carbon\src\Carbon\Traits\Creator.php:699                                                                              
+    Carbon\Carbon::rawCreateFromFormat("D M d H:i:s Y", "ug 24 11:21:44 2022")                                                                                   
+                                                                                                                                                                 
+2   C:\xampp\htdocs\manfisto\vendor\laravel\framework\src\Illuminate\Foundation\Console\ServeCommand.php:261                                                     
+    Carbon\Carbon::createFromFormat("D M d H:i:s Y", "ug 24 11:21:44 2022")                                                                                      
+                                                                                                                                                                 
+ Whoops\Exception\ErrorException                                                                                                                                 
+                                                                                                                                                                 
+Undefined array key 63424                                                                                                                                        
+                                                                                                                                                                 
+at C:\xampp\htdocs\manfisto\vendor\laravel\framework\src\Illuminate\Foundation\Console\ServeCommand.php:250                                                      
+  246▕                 $this->requestsPool[$matches[1]][1] = trim(explode('[200]: GET', $line)[1]);                                                              
+  247▕             } elseif (str($line)->contains(' Closing')) {                                                                                                 
+  248▕                 preg_match('/\:(\d+)/', $parts[1], $matches);                                                                                             
+  249▕                                                                                                                                                           
+➜ 250▕                 $request = $this->requestsPool[$matches[1]];                                                                                              
+  251▕                                                                                                                                                           
+  252▕                 [$startDate, $file] = $request;                                                                                                           
+  253▕                 $formattedStartedAt = $startDate->format('Y-m-d H:i:s');                                                                                  
+  254▕                                                                                                                                                           
+                                                                                                                                                                 
+1   C:\xampp\htdocs\manfisto\vendor\laravel\framework\src\Illuminate\Foundation\Console\ServeCommand.php:250                                                     
+    Whoops\Run::handleError("Undefined array key 63424", "C:\xampp\htdocs\manfisto\vendor\laravel\framework\src\Illuminate\Foundation\Console\ServeCommand.php") 
+                                                                                                                                                                 
+2   C:\xampp\htdocs\manfisto\vendor\laravel\framework\src\Illuminate\Collections\Traits\EnumeratesValues.php:264                                                 
+    Illuminate\Foundation\Console\ServeCommand::Illuminate\Foundation\Console\{closure}("[Wed Aug 24 11:21:45 2022] 127.0.0.1:63424 Closing")                    
