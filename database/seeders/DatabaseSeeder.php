@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(PermissionTableSeeder::class);
         $this->call(CreateUserSeeder::class);
+        $this->call(TransportersTableSeeder::class);
         $this->call(TransporterTableSeeder::class);
         $this->call(ManfistoTableSeeder::class);
         $this->call(OfficeSeeder::class);
@@ -29,5 +30,7 @@ class DatabaseSeeder extends Seeder
         $this->call(StatesTableSeeder::class);
         $this->call(LocalitiesTableSeeder::class);
         $this->call(CitiesTableSeeder::class);
+        //$this->call(QRSTableSeeder::class);
+
     }
 }

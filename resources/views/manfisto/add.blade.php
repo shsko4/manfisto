@@ -68,7 +68,7 @@ input[data-readonly] {
 
 
 <!-- row opened -->
-<div class="row">
+<div class="row mt-2 left-5" style="width: 100%;">
     <div class="col">
         <livewire:transporter-search />
     </div>

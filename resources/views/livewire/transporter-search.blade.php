@@ -6,7 +6,7 @@
                 <div class="card-header" style="font-size: 20px">1- إختيار الترحيلات</div>
                 <div class="card-body">
                     <div class="table-responsive hoverable-table" style="height: auto; width: auto">
-                        <table class="table text-md-nowrap dataTable  collapsed" id="example-delete" data-page-length='5'
+                        <table class="table text-md-nowrap dataTable  collapsed" id="example-delete" data-page-length='10'
                             style=" text-align: center;">
                             <thead>
                                 <tr>

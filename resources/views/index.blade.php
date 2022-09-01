@@ -64,7 +64,7 @@
         </div>
     @endcan
 
-    <div class="card-body">
+    <!--<div class="card-body">
         <div class="table-responsive">
             <table id="example" class="table key-buttons text-md-nowrap">
                 <thead>
@@ -76,18 +76,18 @@
                 <tbody>
 
                     @foreach (\App\Models\QR::all() as $qr)
-                        <tr style="width: auto">
+                        <tr style="width: auto content-center">
 
 
-                            <td>{{ QrCode::size(200)->format('svg')->generate($qr->qr) }}
-                                <p class="mt-2">{{ $qr->qr }}</p></td>
+                            <td>{{ QrCode::size(200)->format('svg')->merge('/stc.png')->generate($qr->qr,'QR/'.$qr->qr.'.svg') }}
+                                <p class="mt-2 content-center">{{ $qr->qr }}</p></td>
 
                         </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
-    </div>
+    </div>-->
 
     <!--
     <div class="content-between">
