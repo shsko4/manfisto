@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
         $this->call(PermissionTableSeeder::class);
         $this->call(CreateUserSeeder::class);
         $this->call(TransportersTableSeeder::class);
-        $this->call(TransporterTableSeeder::class);
+        //$this->call(TransporterTableSeeder::class);
         $this->call(ManfistoTableSeeder::class);
         $this->call(OfficeSeeder::class);
         $this->call(PenaltyTypeSeeder::class);
