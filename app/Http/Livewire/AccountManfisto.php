@@ -14,11 +14,11 @@ class AccountManfisto extends Component
     //public $listeners = ['addReciptRefresh' => 'newRecord'];
 
     public $active = 0;
-    public $thedate;
+    public $thedate = false;
     public $manfistos;
     public function addReciptRefresh()
     {
-        if (!session()->has('thedate')) {
+        if ($this->thedate) {
             $this->manfistos = Manfisto::whereDate('created_at',  DB::raw('CURDATE()'))
                 ->where('office_id', Auth::user()->office->id)
                 ->where('recipt_no', null)
@@ -51,6 +51,7 @@ class AccountManfisto extends Component
     {
 
         if (!session()->has('thedate')) {
+            $this->thedate = true;
             $this->manfistos = Manfisto::whereDate('created_at',  DB::raw('CURDATE()'))
                 ->where('office_id', Auth::user()->office->id)
                 ->where('recipt_no', null)

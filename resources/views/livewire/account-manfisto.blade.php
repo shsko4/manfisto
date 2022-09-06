@@ -11,7 +11,7 @@
                     <div></div>
                     <div></div>
                 </div>
-                <div><button class="btn btn-sm btn-success" wire:click="$emit('addReciptRefresh')">تحديث</button>{{ $thedate }}</div>
+                <div><button class="btn btn-sm btn-success" wire:click="$emit('addReciptRefresh')">تحديث</button></div>
             </div>
             @if (!count($manfistos))
                 <div class="alert alert-success text-center text-bold">لاتوجد سجلات</div>
@@ -19,15 +19,21 @@
                 @foreach ($manfistos as $manfisto)
                     @can('update', $manfisto)
                         <div class="list-group-item d-flex  align-items-center mb-1"
-                            style="height: auto; {{$active == $manfisto->id ? 'background: rgb(163, 168, 166);':'background: rgb(175, 228, 195);'}} "
+                            style="height: auto; {{ $active == $manfisto->id ? 'background: rgb(163, 168, 166);' : 'background: rgb(175, 228, 195);' }} "
                             wire:click="$emit('manfisto_details','{{ $manfisto->id }}','{{ $manfisto->transporter->name }}','{{ $manfisto->man_no }}','{{ $manfisto->car_no }}','{{ $manfisto->dest }}','{{ $manfisto->vat }}','{{ $manfisto->bpt }}','{{ $manfisto->bpt2 }}','{{ $manfisto->total }}','{{ $manfisto->city->name }}')"
                             name="manDiv">
                             <div class="">
                                 <div class="font-weight-semibold ml-3">
                                     <div>
                                         {{ $manfisto->transporter->name }}
+                                        <span class="text-secondary text-xs mr-4">
+                                            @if (!$thedate)
+                                                {{ date_format($manfisto->created_at, 'Y/m/d') }}
+                                            @endif
+                                        </span>
                                     </div>
                                 </div>
+
                             </div>
                             <div class="mr-auto">
                                 <a href="#" class="btn btn-sm btn-dark-gradient"

@@ -25,6 +25,11 @@
                                 <div class="font-weight-semibold ml-3">
                                     <div>
                                         {{ $penalty->penaltyowner->name }}
+                                        <span class="text-secondary text-xs mr-4">
+                                            @if (!$thedate)
+                                                {{ date_format($penalty->created_at, 'Y/m/d') }}
+                                            @endif
+                                        </span>
                                     </div>
                                 </div>
                             </div>

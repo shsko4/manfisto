@@ -12,11 +12,12 @@ class AccountPenalty extends Component
     public $listeners = ['addReciptRefresh','penalty_details'];
     //public $listeners = ['addReciptRefresh' => '$refresh','penalty_details'];
     public $active = 0;
+    public $thedate = false;
     public $penalties = 0;
 
     public function addReciptRefresh()
     {
-        if(!session()->has('thedate')){
+        if($this->thedate){
             $this->penalties = Penalty::whereDate('created_at', DB::raw('CURDATE()'))
                 ->where('office_id', Auth::user()->office->id)
                 ->where('recipt_no',null)
@@ -44,6 +45,7 @@ class AccountPenalty extends Component
     public function mount()
     {
         if(!session()->has('thedate')){
+            $this->thedate = true;
             $this->penalties = Penalty::whereDate('created_at', DB::raw('CURDATE()'))
                 ->where('office_id', Auth::user()->office->id)
                 ->where('recipt_no',null)
