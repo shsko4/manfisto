@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Office;
 use App\Models\Manfisto;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
@@ -14,6 +15,7 @@ class Transporter extends Model
         'tin',
         'name',
         'email',
+        'office_id',
         'phone',
     ];
 
@@ -31,5 +33,10 @@ class Transporter extends Model
 
         $next_man = $data->max('man_no') + 1;
         return $next_man;
+    }
+
+    public function office()
+    {
+        return $this->belongsTo(Office::class);
     }
 }

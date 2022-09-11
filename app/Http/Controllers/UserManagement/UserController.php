@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 //use App\User;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -20,7 +21,7 @@ class UserController extends Controller
     }
     public function index(Request $request)
     {
-        $data = User::orderBy('id', 'DESC')->paginate(5);
+        $data = User::where('office_id',Auth::user()->office->id)->orderBy('id', 'DESC')->paginate(5);
         return view('users.show_users', compact('data'))->with('i', ($request->input('page', 1) - 1) * 5);
     }
     public function create()

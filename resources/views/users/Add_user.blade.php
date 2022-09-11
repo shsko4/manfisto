@@ -54,56 +54,43 @@
 
 
 
-                        <div class="row ">
-                            <div class="col" id="fnWrapper">
-                                <label>اسم المستخدم: <span class="tx-danger">*</span></label>
-                                <input class="form-control"
-                                    data-parsley-class-handler="#lnWrapper" name="name" autocomplete="off" required="" type="text"
-                                    value="{{ old('name') }}" readonly
-                                    onfocus="this.removeAttribute('readonly');">
-                            </div>
-
-                            <div class="col" id="lnWrapper">
-                                <label>البريد الالكتروني: <span class="tx-danger">*</span></label>
-                                <input class="form-control"
-                                    data-parsley-class-handler="#lnWrapper" name="email" required="" type="email"
-                                    value="{{ old('email') }}">
-                            </div>
-
-                            <div class="col" id="fnWrapper">
-                                <label>اسم الدخول: <span class="tx-danger">*</span></label>
-                                <input class="form-control"
-                                    data-parsley-class-handler="#lnWrapper" name="username" required=""
-                                    type="text" value="{{ old('username') }}">
-                            </div>
+                    <div class="row ">
+                        <div class="col" id="fnWrapper">
+                            <label>اسم المستخدم: <span class="tx-danger">*</span></label>
+                            <input class="form-control" data-parsley-class-handler="#lnWrapper" name="name"
+                                autocomplete="off" required="" type="text" value="{{ old('name') }}" readonly
+                                onfocus="this.removeAttribute('readonly');">
                         </div>
 
+                        <div class="col" id="lnWrapper">
+                            <label>البريد الالكتروني: <span class="tx-danger">*</span></label>
+                            <input class="form-control" data-parsley-class-handler="#lnWrapper" name="email"
+                                required="" type="email" value="{{ old('email') }}">
+                        </div>
 
+                        <div class="col" id="fnWrapper">
+                            <label>اسم الدخول: <span class="tx-danger">*</span></label>
+                            <input class="form-control" data-parsley-class-handler="#lnWrapper" name="username"
+                                required="" type="text" value="{{ old('username') }}">
+                        </div>
+                    </div>
+
+                    <input type="hidden" id="office_id" name="office_id" required=""
+                        value="{{ auth()->user()->office->id }}">
 
                     <div class="row">
 
-                        <div class="col" id="lnWrapper">
-                            <label> المكتب <span class="tx-danger">*</span></label>
-                            <select class="form-control  nice-select  custom-select" id="office_id" name="office_id"
-                                required="" >
-
-                                @foreach (\App\Models\Office::all() as $office)
-                                    <option value={{ $office->id }} {{ old('office_id') == $office->id ? 'selected': ''}}>{{ $office->name }}</option>
-                                @endforeach
-                            </select>
-
-                        </div>
 
                         <div class="col" id="lnWrapper">
                             <label>كلمة المرور: <span class="tx-danger">*</span></label>
-                            <input class="form-control" data-parsley-class-handler="#lnWrapper"
-                                name="password" required="" type="password">
+                            <input class="form-control" data-parsley-class-handler="#lnWrapper" name="password"
+                                required="" type="password">
                         </div>
 
                         <div class="col" id="lnWrapper">
                             <label> تاكيد كلمة المرور: <span class="tx-danger">*</span></label>
-                            <input class="form-control" data-parsley-class-handler="#lnWrapper"
-                                name="confirm-password" required="" type="password">
+                            <input class="form-control" data-parsley-class-handler="#lnWrapper" name="confirm-password"
+                                required="" type="password">
                         </div>
                     </div>
 

@@ -1,9 +1,9 @@
 @extends('layouts.master')
 @section('css')
-<!-- Internal Nice-select css  -->
-<link href="{{URL::asset('assets/plugins/jquery-nice-select/css/nice-select.css')}}" rel="stylesheet" />
+    <!-- Internal Nice-select css  -->
+    <link href="{{ URL::asset('assets/plugins/jquery-nice-select/css/nice-select.css') }}" rel="stylesheet" />
 @section('title')
-تعديل مستخدم - مورا سوفت للادارة القانونية
+    تعديل مستخدم - مورا سوفت للادارة القانونية
 @stop
 
 
@@ -26,17 +26,17 @@
     <div class="col-lg-12 col-md-12">
 
         @if (count($errors) > 0)
-        <div class="alert alert-danger">
-            <button aria-label="Close" class="close" data-dismiss="alert" type="button">
-                <span aria-hidden="true">&times;</span>
-            </button>
-            <strong>خطا</strong>
-            <ul>
-                @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
+            <div class="alert alert-danger">
+                <button aria-label="Close" class="close" data-dismiss="alert" type="button">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <strong>خطا</strong>
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
         @endif
 
         <div class="card">
@@ -47,48 +47,40 @@
                     </div>
                 </div><br>
 
-                {!! Form::model($user, ['method' => 'PATCH','route' => ['users.update', $user->id]]) !!}
+                {!! Form::model($user, ['method' => 'PATCH', 'route' => ['users.update', $user->id]]) !!}
                 <div class="">
 
                     <div class="row">
                         <div class="parsley-input col-md-6" id="fnWrapper">
                             <label>اسم المستخدم: <span class="tx-danger">*</span></label>
-                            {!! Form::text('name', null, array('class' => 'form-control','required')) !!}
+                            {!! Form::text('name', null, ['class' => 'form-control', 'required']) !!}
                         </div>
 
                         <div class="col" id="lnWrapper">
                             <label>البريد الالكتروني: <span class="tx-danger">*</span></label>
-                            {!! Form::text('email', null, array('class' => 'form-control','required')) !!}
+                            {!! Form::text('email', null, ['class' => 'form-control', 'required']) !!}
                         </div>
 
                         <div class="col" id="lnWrapper">
-                            <label>  اسم الدخول: <span class="tx-danger">*</span></label>
-                            {!! Form::text('username', null, array('class' => 'form-control','required')) !!}
+                            <label> اسم الدخول: <span class="tx-danger">*</span></label>
+                            {!! Form::text('username', null, ['class' => 'form-control', 'required']) !!}
                         </div>
                     </div>
-
+                    <label> المكتب: <span class="tx-danger">*</span></label>
+                    <input type="hidden" id="office_id" name="office_id" required=""
+                        value="{{ $user->office->id }}">
                 </div>
 
                 <div class="row">
-                    <div class="col" id="lnWrapper">
-                        <label> المكتب: <span class="tx-danger">*</span></label>
-                        <select class="form-control  nice-select  custom-select" id="office_id" name="office_id"
-                                required="" >
-
-                                @foreach (\App\Models\Office::all() as $office)
-                                    <option value={{ $office->id }} {{ old('office_id',$user->office->id) == $office->id ? 'selected': ''}}>{{ $office->name }}</option>
-                                @endforeach
-                            </select>
-                    </div>
 
                     <div class="col" id="lnWrapper">
                         <label>كلمة المرور: <span class="tx-danger">*</span></label>
-                        {!! Form::password('password', array('class' => 'form-control','required')) !!}
+                        {!! Form::password('password', ['class' => 'form-control', 'required']) !!}
                     </div>
 
                     <div class="col" id="lnWrapper">
                         <label> تاكيد كلمة المرور: <span class="tx-danger">*</span></label>
-                        {!! Form::password('confirm-password', array('class' => 'form-control','required')) !!}
+                        {!! Form::password('confirm-password', ['class' => 'form-control', 'required']) !!}
                     </div>
                 </div>
 
@@ -96,7 +88,7 @@
                     <div class="col-lg-6">
                         <label class="form-label">حالة المستخدم</label>
                         <select name="status" id="select-beast" class="form-control  nice-select  custom-select">
-                            <option value="{{ $user->status}}">{{ $user->status}}</option>
+                            <option value="{{ $user->status }}">{{ $user->status }}</option>
                             <option value="مفعل">مفعل</option>
                             <option value="غير مفعل">غير مفعل</option>
                         </select>
@@ -107,8 +99,7 @@
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
                             <strong>نوع المستخدم</strong>
-                            {!! Form::select('roles_name[]', $roles,$userRole, array('class' => 'form-control','multiple'))
-                            !!}
+                            {!! Form::select('roles_name[]', $roles, $userRole, ['class' => 'form-control', 'multiple']) !!}
                         </div>
                     </div>
                 </div>
@@ -134,11 +125,11 @@
 @section('js')
 
 <!-- Internal Nice-select js-->
-<script src="{{URL::asset('assets/plugins/jquery-nice-select/js/jquery.nice-select.js')}}"></script>
-<script src="{{URL::asset('assets/plugins/jquery-nice-select/js/nice-select.js')}}"></script>
+<script src="{{ URL::asset('assets/plugins/jquery-nice-select/js/jquery.nice-select.js') }}"></script>
+<script src="{{ URL::asset('assets/plugins/jquery-nice-select/js/nice-select.js') }}"></script>
 
 <!--Internal  Parsley.min js -->
-<script src="{{URL::asset('assets/plugins/parsleyjs/parsley.min.js')}}"></script>
+<script src="{{ URL::asset('assets/plugins/parsleyjs/parsley.min.js') }}"></script>
 <!-- Internal Form-validation js -->
-<script src="{{URL::asset('assets/js/form-validation.js')}}"></script>
+<script src="{{ URL::asset('assets/js/form-validation.js') }}"></script>
 @endsection

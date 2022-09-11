@@ -27,6 +27,7 @@ class TransporterRequest extends FormRequest
         return [
             'tin' => ['required',Rule::unique('transporters', 'tin')->ignore($this->transporter),'max:12','min:12'],
             'name' => 'required|max:255',
+            'office_id' => 'required',
             'email' => 'nullable|email',
         ];
     }
@@ -35,6 +36,7 @@ class TransporterRequest extends FormRequest
     {
         return [
             'tin.required' => 'يرجي ادخال الرقم التعريفي ',
+            'office_id.required' => 'يرجى تحديد مكتب أرباح الاعمال',
             'tin.unique' => 'الرقم التعريفي موجود مسبقا',
             'tin.max' => 'الرقم التعريفي يتكون من 12 خانه رقميه',
             'tin.min' => 'الرقم التعريفي يتكون من 12 خانه رقميه',

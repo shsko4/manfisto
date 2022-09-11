@@ -14,6 +14,8 @@
 <link href="{{ URL::asset('assets/plugins/datatable/css/responsive.dataTables.min.css') }}" rel="stylesheet">
 <!--Internal   Notify -->
 <link href="{{ URL::asset('assets/plugins/notify/css/notifIt.css') }}" rel="stylesheet" />
+<!-- Internal Select2 css -->
+<link href="{{ URL::asset('assets/plugins/select2/css/select2.min.css') }}" rel="stylesheet">
 
 @endsection
 @section('page-header')
@@ -115,6 +117,29 @@
                         <div class="form-group ">
                             <div class="row">
                                 <div class="col-md-3">
+                                    <label class="form-label">مكتب أرباع أعمال</label>
+                                </div>
+                                <!--<div class="col-md-9">
+                                    <input type="phone" class="form-control" id="office_id" name="office_id"
+                                        value="{{ old('office_id', $transporter->office->name) }}">
+                                </div>-->
+                                <div class="col-md-9">
+                                    <select name="office_id" id="office_id" class="form-control select2" required>
+                                        <option label="إخر المدينة">
+                                        </option>
+                                        @foreach (App\Models\Office::orderBy('name')->get() as $office)
+                                            <option value="{{ $office->id }}"
+                                                {{ $office->id == $transporter->office_id ? 'selected' : '' }}>
+                                                {{ $office->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <div class="row">
+                                <div class="col-md-3">
                                     <label class="form-label">البريد الإلكتروني</label>
                                 </div>
                                 <div class="col-md-9">
@@ -162,5 +187,27 @@
 <script src="{{ URL::asset('assets/plugins/notify/js/notifit-custom.js') }}"></script>
 <!-- Internal Modal js-->
 <script src="{{ URL::asset('assets/js/modal.js') }}"></script>
+
+<!-- Internal Select2.min js -->
+<script src="{{ URL::asset('assets/plugins/select2/js/select2.min.js') }}"></script>
+<!-- Internal form-elements js -->
+<script src="{{ URL::asset('assets/js/form-elements.js') }}"></script>
+<script src="{{ URL::asset('vendor/sweetalert/sweetalert.all.js') }}"></script>
+<!--Internal  Datepicker js -->
+<script src="{{ URL::asset('assets/plugins/jquery-ui/ui/widgets/datepicker.js') }}"></script>
+<!--Internal  jquery.maskedinput js -->
+<script src="{{ URL::asset('assets/plugins/jquery.maskedinput/jquery.maskedinput.js') }}"></script>
+<!--Internal  spectrum-colorpicker js -->
+<script src="{{ URL::asset('assets/plugins/spectrum-colorpicker/spectrum.js') }}"></script>
+<script src="{{ asset('vendor/pharaonic/pharaonic.select2.min.js') }}"></script>
+<!--Internal  jquery-simple-datetimepicker js -->
+<script src="{{ URL::asset('assets/plugins/amazeui-datetimepicker/js/amazeui.datetimepicker.min.js') }}"></script>
+<!-- Ionicons js -->
+<script src="{{ URL::asset('assets/plugins/jquery-simple-datetimepicker/jquery.simple-dtpicker.js') }}"></script>
+<!--Internal  pickerjs js -->
+<script src="{{ URL::asset('assets/plugins/pickerjs/picker.min.js') }}"></script>
+<!-- Internal form-elements js -->
+<script src="{{ URL::asset('assets/js/form-elements.js') }}"></script>
+
 
 @endsection

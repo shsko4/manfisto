@@ -68,7 +68,7 @@
                                 <th class="wd-10p border-bottom-0">#</th>
                                 <th class="wd-15p border-bottom-0">الرقم التعريفي</th>
                                 <th class="wd-15p border-bottom-0">اسم المرحل</th>
-                                <th class="wd-20p border-bottom-0">البريد الالكتروني</th>
+                                <th class="wd-20p border-bottom-0">مكتب أرباع أعمال</th>
                                 <th class="wd-15p border-bottom-0">رقم الهاتف</th>
                                 <th class="wd-10p border-bottom-0">العمليات</th>
                             </tr>
@@ -80,7 +80,7 @@
                                     <td>{{ ++$i }}</td>
                                     <td>{{ $transporter->tin }}</td>
                                     <td>{{ $transporter->name }}</td>
-                                    <td>{{ $transporter->email }}</td>
+                                    <td>{{ $transporter->office->name }}</td>
                                     <td>{{ $transporter->phone }}</td>
 
                                     <td>

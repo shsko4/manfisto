@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('phone')->nullable();
             $table->string('email')->nullable();
+            $table->string('office_id')->nullable();
 
             $table->softDeletes();
             $table->timestamps();

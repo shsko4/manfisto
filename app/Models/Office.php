@@ -7,6 +7,7 @@ use App\Models\Penalty;
 use App\Models\Manfisto;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Symfony\Component\Mailer\Transport;
 
 class Office extends Model
 {
@@ -28,6 +29,11 @@ class Office extends Model
     public function penalty()
     {
         return $this->hasMany(Penalty::class);
+    }
+
+    public function transporter()
+    {
+        return $this->hasMany(Transport::class);
     }
 
 
