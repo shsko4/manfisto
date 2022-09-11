@@ -106,7 +106,7 @@ class TransporterController extends Controller
     public function destroy(Transporter $transporter)
     {
         $transporter->delete();
-        session()->flash('success', 'تم حذف القسم بنجاح');
+        session()->flash('success', 'تم حذف السجل بنجاح');
         return redirect()->back();
     }
 }

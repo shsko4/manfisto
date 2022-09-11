@@ -125,7 +125,7 @@
                                 </div>-->
                                 <div class="col-md-9">
                                     <select name="office_id" id="office_id" class="form-control select2" required>
-                                        <option label="إخر المدينة">
+                                        <option label="إختر المكتب">
                                         </option>
                                         @foreach (App\Models\Office::orderBy('name')->get() as $office)
                                             <option value="{{ $office->id }}"

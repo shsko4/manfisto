@@ -14,7 +14,10 @@
 <link href="{{ URL::asset('assets/plugins/datatable/css/responsive.dataTables.min.css') }}" rel="stylesheet">
 <!--Internal   Notify -->
 <link href="{{ URL::asset('assets/plugins/notify/css/notifIt.css') }}" rel="stylesheet" />
-
+<!-- Internal Select2 css -->
+<link href="{{ URL::asset('assets/plugins/select2/css/select2.min.css') }}" rel="stylesheet">
+@vite('resources/css/app.css')
+@livewireStyles
 @endsection
 @section('page-header')
 <!-- breadcrumb -->
@@ -60,56 +63,10 @@
 
                 </div>
             </div>
-            <div class="card-body">
-                <div class="table-responsive hoverable-table">
-                    <table class="table table-hover" id="example1" data-page-length='50' style=" text-align: center;">
-                        <thead>
-                            <tr>
-                                <th class="wd-10p border-bottom-0">#</th>
-                                <th class="wd-15p border-bottom-0">الرقم التعريفي</th>
-                                <th class="wd-15p border-bottom-0">اسم المرحل</th>
-                                <th class="wd-20p border-bottom-0">مكتب أرباع أعمال</th>
-                                <th class="wd-15p border-bottom-0">رقم الهاتف</th>
-                                <th class="wd-10p border-bottom-0">العمليات</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {{ $i = 0 }}
-                            @foreach ($transporters as $transporter)
-                                <tr>
-                                    <td>{{ ++$i }}</td>
-                                    <td>{{ $transporter->tin }}</td>
-                                    <td>{{ $transporter->name }}</td>
-                                    <td>{{ $transporter->office->name }}</td>
-                                    <td>{{ $transporter->phone }}</td>
-
-                                    <td>
-                                        @can('تعديل مرحل')
-                                        <a href="{{ route('transporter.edit',$transporter->id) }}" class="btn btn-sm btn-info" title="تعديل"
-                                            data-effect="effect-scale"
-                                            data-trans_id="{{ $transporter->id }}" data-btn_type='edit'
-                                            data-tin="{{ $transporter->tin }}" data-name="{{ $transporter->name }}"
-                                            data-email="{{ $transporter->email }}"
-                                            data-phone="{{ $transporter->phone }}">
-                                            <i class="las la-pen"></i></a>
-                                        @endcan
-
-                                        @can('حذف مرحل')
-                                        <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
-                                            data-trans_id="{{ $transporter->id }}"
-                                            data-trans_name="{{ $transporter->name }}" data-toggle="modal"
-                                            href="#modaldemo8" title="حذف" data-btn_type='add'><i
-                                            class="las la-trash"></i></a>
-                                        @endcan
-
-
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
+            <div class="mt-12" style="height: 400px; overflow: scroll">
+                <livewire:transporter-livewire  searchable="name" hideable="inline"/>
             </div>
+
         </div>
     </div>
     <!--/div-->
@@ -176,7 +133,20 @@
                                     value="{{ old('name') }}" title="يرجى إدخال إسم الترحيلات" required>
                             </div>
                         </div>
-                        <div class="row m-3">
+                        <div class="row">
+                            <div class="col">
+                                <label for="office_id" class="control-label">مكتب أرباح أعمال</label>
+                                <select name="office_id" id="office_id" class="form-control select2" required>
+                                        <option label="إختر المكتب">
+                                        </option>
+                                        @foreach (App\Models\Office::orderBy('name')->get() as $office)
+                                            <option value="{{ $office->id }}"
+                                                {{ $office->id ==  old('office_id') ? 'selected' : '' }}>
+                                                {{ $office->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                            </div>
                             <div class="col">
                                 <label for="email" class="control-label">البريد الإلكتروني</label>
                                 <input type="text" class="form-control" id="email" name="email"
@@ -230,6 +200,27 @@
 <script src="{{ URL::asset('assets/plugins/notify/js/notifit-custom.js') }}"></script>
 <!-- Internal Modal js-->
 <script src="{{ URL::asset('assets/js/modal.js') }}"></script>
+
+<!-- Internal Select2.min js -->
+<script src="{{ URL::asset('assets/plugins/select2/js/select2.min.js') }}"></script>
+
+
+<script src="{{ URL::asset('vendor/sweetalert/sweetalert.all.js') }}"></script>
+<!--Internal  Datepicker js -->
+<script src="{{ URL::asset('assets/plugins/jquery-ui/ui/widgets/datepicker.js') }}"></script>
+<!--Internal  jquery.maskedinput js -->
+<script src="{{ URL::asset('assets/plugins/jquery.maskedinput/jquery.maskedinput.js') }}"></script>
+<!--Internal  spectrum-colorpicker js -->
+<script src="{{ URL::asset('assets/plugins/spectrum-colorpicker/spectrum.js') }}"></script>
+<script src="{{ asset('vendor/pharaonic/pharaonic.select2.min.js') }}"></script>
+<!--Internal  jquery-simple-datetimepicker js -->
+<script src="{{ URL::asset('assets/plugins/amazeui-datetimepicker/js/amazeui.datetimepicker.min.js') }}"></script>
+<!-- Ionicons js -->
+<script src="{{ URL::asset('assets/plugins/jquery-simple-datetimepicker/jquery.simple-dtpicker.js') }}"></script>
+<!--Internal  pickerjs js -->
+<script src="{{ URL::asset('assets/plugins/pickerjs/picker.min.js') }}"></script>
+<!-- Internal form-elements js -->
+<script src="{{ URL::asset('assets/js/form-elements.js') }}"></script>
 
 <script>
     $('#modaldemo8').on('show.bs.modal', function(event) {
