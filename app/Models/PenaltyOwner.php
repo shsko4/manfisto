@@ -5,11 +5,12 @@ namespace App\Models;
 use App\Models\Office;
 use App\Models\TypeOfId;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class PenaltyOwner extends Model
 {
-    use HasFactory;
+    use HasFactory,SoftDeletes;
     protected $fillable = [
         'name',
         'type_of_id_id',

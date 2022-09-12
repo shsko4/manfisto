@@ -64,7 +64,7 @@
                 </div>
             </div>
             <div class="mt-12" style="height: 400px; overflow: scroll">
-                <livewire:transporter-livewire  searchable="name" hideable="inline"/>
+                <livewire:transporter-livewire  searchable="transporters.name,tin,offices.name" hideable="inline"/>
             </div>
 
         </div>
@@ -132,11 +132,10 @@
                                 <input type="text" class="form-control" id="name" name="name"
                                     value="{{ old('name') }}" title="يرجى إدخال إسم الترحيلات" required>
                             </div>
-                        </div>
-                        <div class="row">
+
                             <div class="col">
                                 <label for="office_id" class="control-label">مكتب أرباح أعمال</label>
-                                <select name="office_id" id="office_id" class="form-control select2" required>
+                                <select name="office_id" id="office_id" class="form-control select2" required style="width: 230px">
                                         <option label="إختر المكتب">
                                         </option>
                                         @foreach (App\Models\Office::orderBy('name')->get() as $office)
@@ -147,15 +146,17 @@
                                         @endforeach
                                     </select>
                             </div>
+                        </div>
+                        <div class="row m-3">
                             <div class="col">
                                 <label for="email" class="control-label">البريد الإلكتروني</label>
-                                <input type="text" class="form-control" id="email" name="email"
-                                    value="{{ old('email') }}">
+                                <input type="email" class="form-control" id="email" name="email"
+                                    value="{{ old('email') }}" >
                             </div>
-                            <div class="col">
+                            <div class="col" style="width: auto">
                                 <label for="phone" class="control-label">الهاتف</label>
-                                <input type="text" class="form-control" id="phone" name="phone"
-                                    value="{{ old('phone') }}">
+                                <input type="tel" class="form-control" id="phone" name="phone"
+                                    value="{{ old('phone') }}" required >
                             </div>
                         </div>
 

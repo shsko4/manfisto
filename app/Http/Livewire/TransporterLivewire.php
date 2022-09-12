@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\Office;
 use Livewire\Component;
 use App\Models\Transporter;
+use Illuminate\Support\Facades\Gate;
 use Mediconesystems\LivewireDatatables\Column;
 use Mediconesystems\LivewireDatatables\Http\Livewire\LivewireDatatable;
 
@@ -12,7 +13,9 @@ class TransporterLivewire extends LivewireDatatable
 {
     public function builder()
     {
-        $model = Transporter::orderByDesc('office_id');
+        $model = Transporter::query()
+            ->leftJoin('offices', 'offices.id', 'transporters.office_id');
+        //$model = Transporter::orderByDesc('office_id');
 
         return $model;
     }
@@ -30,7 +33,7 @@ class TransporterLivewire extends LivewireDatatable
                 ->exportCallback(function ($value) {
                     return (string) $value;
                 }),
-            Column::name('name')
+            Column::name('transporters.name')
                 ->label('الاسم')
                 ->contentAlignCenter()
                 ->headerAlignCenter()
@@ -38,10 +41,7 @@ class TransporterLivewire extends LivewireDatatable
                 ->exportCallback(function ($value) {
                     return (string) $value;
                 }),
-            Column::callback(['office_id'], function ($office_id) {
-
-                return Office::find($office_id)->name;
-            })
+            Column::name('offices.name')
                 ->label('مكتب أ.ع')
                 ->contentAlignRight()
                 ->headerAlignCenter()
@@ -63,7 +63,15 @@ class TransporterLivewire extends LivewireDatatable
                 $editUrl = "transporter.edit";
                 $editUrl = route($editUrl, $transporter->id);
 
-                //if (Gate::check('delete', $City)) {
+                $del = '';
+
+                if (Gate::check('delete', $transporter)) {
+                    $del = "  <a class='modal-effect btn btn-sm btn-danger' data-effect='effect-scale'
+                    data-trans_id= $transporter->id
+                    data-toggle='modal'
+                    href='#modaldemo8' title='حذف' data-btn_type='add'><i
+                    class='las la-trash'></i></a>";
+                }
 
                 return  "<a href=$editUrl class='btn btn-sm btn-info' title='تعديل'
                     data-effect='effect-scale'
@@ -71,12 +79,7 @@ class TransporterLivewire extends LivewireDatatable
                     data-tin='{{ $transporter->tin }}' data-name='{{ $transporter->name }}'
                     data-email='{{ $transporter->email }}'
                     data-phone='{{ $transporter->phone }}'>
-                    <i class='las la-pen'></i></a>
-                    <a class='modal-effect btn btn-sm btn-danger' data-effect='effect-scale'
-                    data-trans_id= $transporter->id
-                    data-toggle='modal'
-                    href='#modaldemo8' title='حذف' data-btn_type='add'><i
-                    class='las la-trash'></i></a>";
+                    <i class='las la-pen'></i></a>".$del;
 
             })
                 ->label('العمليات')

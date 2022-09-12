@@ -6,12 +6,13 @@ use App\Models\User;
 use App\Models\Penalty;
 use App\Models\Manfisto;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Symfony\Component\Mailer\Transport;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Office extends Model
 {
-    use HasFactory;
+    use HasFactory,SoftDeletes;
     protected $fillable = [
         'name',
     ];
