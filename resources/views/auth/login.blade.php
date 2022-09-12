@@ -35,12 +35,12 @@
                                             <form method="POST" action="{{ route('login') }}">
                                                 @csrf
                                                 <div class="form-group">
-                                                    <label>البريد الالكتروني</label>
-                                                    <input id="email" type="email"
-                                                        class="form-control @error('email') is-invalid @enderror"
-                                                        name="email" value="{{ old('email') }}" required
-                                                        autocomplete="email" autofocus>
-                                                    @error('email')
+                                                    <label>اسم الدخول</label>
+                                                    <input id="username" type="text"
+                                                        class="form-control @error('username') is-invalid @enderror"
+                                                        name="username" value="{{ old('username') }}" required
+                                                        autocomplete="username" autofocus>
+                                                    @error('username')
                                                         <span class="invalid-feedback" role="alert">
                                                             <strong>{{ $message }}</strong>
                                                         </span>

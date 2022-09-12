@@ -102,7 +102,7 @@
                         @endcan
 
                         @can('تقارير الحسابات')
-                            <li><a class="slide-item" href="{{ route('penaltyreport') }}">تقارير الحسابات</a></li>
+                            <li><a class="slide-item" href="#">تقارير الحسابات</a></li>
                         @endcan
 
 

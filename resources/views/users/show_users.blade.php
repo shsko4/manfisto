@@ -32,16 +32,15 @@
 @section('content')
 
 @if (session()->has('success'))
-        <script>
-            window.onload = function() {
-                notif({
-                    msg: "{{ session('success') }}",
-                    type: "success"
-                })
-            }
-
-        </script>
-    @endif
+    <script>
+        window.onload = function() {
+            notif({
+                msg: "{{ session('success') }}",
+                type: "success"
+            })
+        }
+    </script>
+@endif
 
 <!-- row opened -->
 <div class="row row-sm">
@@ -71,7 +70,7 @@
                         </thead>
                         <tbody>
                             @foreach ($data as $key => $user)
-                                <tr >
+                                <tr>
                                     <td>{{ ++$i }}</td>
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->username }}</td>
@@ -98,16 +97,18 @@
                                     </td>
 
                                     <td style="width: 75px">
-                                        @can('تعديل مستخدم')
-                                            <a href="{{ route('users.edit', $user->id) }}" class="btn btn-sm btn-info"
-                                                title="تعديل"><i class="las la-pen"></i></a>
-                                        @endcan
+                                        @can('update', $user)
+                                            @can('تعديل مستخدم')
+                                                <a href="{{ route('users.edit', $user->id) }}" class="btn btn-sm btn-info"
+                                                    title="تعديل"><i class="las la-pen"></i></a>
+                                            @endcan
 
-                                        @can('حذف مستخدم')
-                                            <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
-                                                data-userid="{{ $user->id }}" data-username="{{ $user->name }}"
-                                                data-toggle="modal" href="#modaldemo8" title="حذف"><i
-                                                    class="las la-trash"></i></a>
+                                            @can('حذف مستخدم')
+                                                <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
+                                                    data-userid="{{ $user->id }}" data-username="{{ $user->name }}"
+                                                    data-toggle="modal" href="#modaldemo8" title="حذف"><i
+                                                        class="las la-trash"></i></a>
+                                            @endcan
                                         @endcan
                                     </td>
                                 </tr>
@@ -180,11 +181,10 @@
         var modal = $(this)
         modal.find('.modal-body #user_id').val(user_id);
         modal.find('.modal-body #username').text(username);
-        var url_route = '{{ route("users.destroy", ":user") }}';
+        var url_route = '{{ route('users.destroy', ':user') }}';
         url_route = url_route.replace(':user', user_id);
         document.getElementById("del-form").action = url_route;
     })
-
 </script>
 
 
