@@ -58,6 +58,10 @@
                             <li><a class="slide-item" href="{{ route('penalty.index') }}">المخالفات</a></li>
                         @endcan
 
+                        @can('جمارك')
+                            <li><a class="slide-item" href="{{ route('custom.index') }}">شهادات جمركية</a></li>
+                        @endcan
+
 
                     </ul>
                 </li>

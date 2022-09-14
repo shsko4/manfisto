@@ -10,6 +10,7 @@ use App\Http\Controllers\PenaltyController;
 use App\Http\Controllers\ManfistoController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\CityController;
+use App\Http\Controllers\CustomController;
 use App\Http\Controllers\LocalityController;
 use App\Http\Controllers\PenaltyTypeController;
 use App\Http\Controllers\TransporterController;
@@ -79,9 +80,6 @@ Route::resource('city', CityController::class);
 
 Route::resource('manfisto', ManfistoController::class);
 Route::resource('account', AccountController::class);
+Route::resource('custom', CustomController::class);
 
-
-Route::get('livewire-datatables', function () {
-    return view('welcome');
-});
 Route::get('/{page}', [AdminController::class, 'index']);
