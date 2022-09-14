@@ -1,0 +1,5 @@
+cfg_smtp_server=webmail.tax.gov.sd
+cfg_smtp_port=25
+cfg_smtp_usermail=taxation.chamber@tax.gov.sd
+cfg_smtp_user=taxation.chamber@tax.gov.sd
+cfg_smtp_password=123456*a
