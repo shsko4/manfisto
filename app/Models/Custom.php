@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\User;
 use App\Models\Office;
 use App\Models\CustomCertificate;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -13,7 +14,7 @@ class Custom extends Model
 {
     use HasFactory;
     use SoftDeletes;
-    protected $fillable = ['driver_name','car_no','user_id','office_id','date_of_trip'];
+    protected $fillable = ['driver_name', 'car_no', 'user_id', 'office_id', 'date_of_trip', 'recipt_no'];
 
     public function user()
     {
@@ -28,5 +29,19 @@ class Custom extends Model
     public function custom_cert()
     {
         return $this->hasMany(CustomCertificate::class);
+    }
+
+    public function getNextSerialAttribute()
+    {
+
+        $data = CustomCertificate::select(DB::raw('MAX(serial) as serial'))
+            ->where('custom_id', $this->id)
+            ->get();
+        if ($data) {
+            $next_serial = $data->max('serial') + 1;
+            return $next_serial;
+        }
+
+        return 1;
     }
 }

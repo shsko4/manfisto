@@ -62,7 +62,7 @@
                                     </div>
                                 @endif
 
-                                <livewire:add-penalty>
+                                <livewire:add-custom>
 
                             </div>
                         </div>

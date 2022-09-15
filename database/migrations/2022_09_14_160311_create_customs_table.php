@@ -20,6 +20,7 @@ return new class extends Migration
             $table->date('date_of_trip');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('office_id');
+            $table->string('recipt_no',200)->nullable();
             $table->softDeletes();
             $table->timestamps();
             $table->unique(['car_no', 'date_of_trip']);
