@@ -16,7 +16,7 @@ class CustomOwnerList extends LivewireDatatable
     public function builder()
     {
         $model = Custom::where('office_id', Auth::user()->office->id)
-            ->whereDate('date_of_trip', Carbon::today())->orderByDesc('created_at');
+            ->whereDate('date_of_trip', Carbon::today())->orderByDesc('id');
 
         return $model;
     }
@@ -46,7 +46,7 @@ class CustomOwnerList extends LivewireDatatable
                 }),
             Column::callback(['id'], function ($id) {
                 $customOwner = Custom::find($id);
-                return "<a href='#' wire:click='setOwner($id)' class='btn btn-sm btn-primary''><i class='las la-pen'></i></a>
+                return "<a href='#' wire:click='setOwner($id)' class='btn btn-sm btn-success'><i class='las la-file-invoice'></i></a>
                 <button wire:click='theEdit($id)'
                 class='btn btn-sm btn-info'><i class='las la-pen'></i></button>
                 <a href='#' class='modal-effect btn btn-sm btn-danger'

@@ -66,10 +66,10 @@ class AddCustom extends Component
             $this->nolon = 0;
 
         }
-        $this->vat = $this->nolon*17/100;
-        $this->stamp = $this->nolon*1/100;
-        $this->bpt = $this->nolon*1/100;
-        $this->total = $this->vat + $this->stamp + $this->bpt;
+        $this->vat = round($this->nolon*17/100);
+        $this->stamp = round($this->nolon*1/100);
+        $this->bpt = round($this->nolon*1/100);
+        $this->total = round($this->vat + $this->stamp + $this->bpt);
         return view('livewire.add-custom');
     }
 
@@ -125,6 +125,6 @@ class AddCustom extends Component
 
         $this->resetInputFields();
 
-        $this->emit('penRefresh');
+        $this->emit('refreshLivewireDatatable');
     }
 }

@@ -1,4 +1,8 @@
-<form method="POST">
+
+<div>
+
+<div>
+     <form method="POST">
     <div class="row">
         <!-------------->
         <div class="col">
@@ -129,8 +133,14 @@
             <button type="button" wire:click.prevent="resetandback()"
             class="btn btn-dark btn-icons">رجوع</button>
 
+
         </div>
 
     </div>
 
 </form>
+</div>
+<div class="mt-5">
+    <livewire:custom-certificate  searchable="name,serial" hideable="inline" :custom_id="$custom_id"/>
+</div>
+</div>
