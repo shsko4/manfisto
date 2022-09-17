@@ -76,6 +76,16 @@ class CreateUserSeeder extends Seeder
             'office_id' => '184',
         ]);
 
+        $custom_acc_user = User::create([
+            'name' => 'محاسب مكتب وادي حلفا',
+            'email' => 'custom_acc@admin.com',
+            'username' => 'custom_acc',
+            'password' => bcrypt('123'),
+            'roles_name' => ["accountant"],
+            'status' => 'مفعل',
+            'office_id' => '184',
+        ]);
+
         $role = Role::create(['name' => 'owner']);
         $role_accountant = Role::create(['name' => 'accountant']);
         $role_inspector = Role::create(['name' => 'مفتش']);
@@ -107,5 +117,6 @@ class CreateUserSeeder extends Seeder
         $user4->assignRole([$role_accountant->id]);
         $user5->assignRole([$role_inspector->id]);
         $custom_user->assignRole([$role_custom->id]);
+        $custom_acc_user->assignRole([$role_accountant->id]);
     }
 }

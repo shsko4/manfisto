@@ -19,8 +19,8 @@ return new class extends Migration
             $table->integer('serial');
             $table->string('name');
             $table->string('cert_no');
-            $table->string('cert_recipt_no');
-            $table->decimal('nolon',8,2);
+            $table->decimal('cert_recipt_no',10,2);
+            $table->decimal('nolon',10,2);
             $table->decimal('stamp',8,2);
             $table->decimal('bpt',8,2);
             $table->decimal('vat',8,2);

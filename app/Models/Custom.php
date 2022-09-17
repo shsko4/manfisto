@@ -44,4 +44,28 @@ class Custom extends Model
 
         return 1;
     }
+
+    public function getCertCountAttribute()
+    {
+
+        $customCert = CustomCertificate::where('custom_id', $this->id);
+
+        if ($customCert) {
+            return $customCert->count();
+        }
+        return 0;
+    }
+
+    public function getTotalTaxAmountAttribute()
+    {
+        $data = CustomCertificate::select(DB::raw('sum(total) as total'))
+            ->where('custom_id', $this->id)
+            ->get();
+        if ($data) {
+            $next_serial = $data->max('total');
+            return $next_serial;
+        }
+
+        return 0;
+    }
 }

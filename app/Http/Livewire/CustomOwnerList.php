@@ -7,6 +7,7 @@ use App\Models\Custom;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
 use Mediconesystems\LivewireDatatables\Column;
+use Mediconesystems\LivewireDatatables\NumberColumn;
 use Mediconesystems\LivewireDatatables\Http\Livewire\LivewireDatatable;
 
 class CustomOwnerList extends LivewireDatatable
@@ -32,15 +33,40 @@ class CustomOwnerList extends LivewireDatatable
                 ->label('السائق')
                 ->contentAlignRight()
                 ->headerAlignCenter()
-                ->width(150)
+                //->editable()
+                ->width(400)
                 ->exportCallback(function ($value) {
                     return (string) $value;
                 }),
             Column::name('car_no')
                 ->label('رقم العربة')
-                ->contentAlignRight()
+                ->contentAlignCenter()
                 ->headerAlignCenter()
-                ->width(150)
+                ->width(400)
+                ->exportCallback(function ($value) {
+                    return (string) $value;
+                }),
+
+            Column::callback(['id', 'driver_name'], function ($id) {
+                $customOwner = Custom::find($id);
+                return $customOwner->cert_count;
+            })
+                ->label('عدد الشهادات')
+                ->contentAlignCenter()
+                ->width(150),
+            NumberColumn::callback(['id', 'created_at'], function ($id) {
+                $customOwner = Custom::find($id);
+                return number_format($customOwner->total_tax_amount);
+            })
+                ->label('الجملة')
+                ->contentAlignCenter()
+                //->format()
+                ->width(150),
+            Column::name('recipt_no')
+                ->label('رقم الإيصال')
+                ->contentAlignCenter()
+                ->headerAlignCenter()
+                ->width(300)
                 ->exportCallback(function ($value) {
                     return (string) $value;
                 }),
@@ -54,8 +80,9 @@ class CustomOwnerList extends LivewireDatatable
                 data-penaltyowner='{{ $id }}'><i class='las la-trash'></i></a>";
             })
                 ->label('العمليات')
-                ->contentAlignRight()
-                ->width(150),
+                ->contentAlignCenter()
+                ->excludeFromExport()
+                ->width(400),
             /*Column::delete('id')*/
         ];
     }

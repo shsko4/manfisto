@@ -62,13 +62,15 @@ class AddCustom extends Component
     }
     public function render()
     {
-        if (!is_numeric($this->nolon)) {
-            $this->nolon = 0;
+        if (!is_numeric($this->cert_recipt_no)) {
+            $this->cert_recipt_no = 0;
 
         }
-        $this->vat = round($this->nolon*17/100);
-        $this->stamp = round($this->nolon*1/100);
-        $this->bpt = round($this->nolon*1/100);
+
+        $this->nolon = round($this->cert_recipt_no*100/17);
+        $this->vat = round($this->nolon*110/100*17/100-$this->cert_recipt_no);
+        $this->stamp = round($this->nolon/100);
+        $this->bpt = round($this->nolon*5/100);
         $this->total = round($this->vat + $this->stamp + $this->bpt);
         return view('livewire.add-custom');
     }

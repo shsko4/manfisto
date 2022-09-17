@@ -33,7 +33,7 @@ class CustomCertificate extends LivewireDatatable
                 ->label('الإسم')
                 ->contentAlignRight()
                 ->headerAlignCenter()
-                ->width(150)
+                ->width(500)
                 ->exportCallback(function ($value) {
                     return (string) $value;
                 }),
@@ -41,39 +41,52 @@ class CustomCertificate extends LivewireDatatable
                 ->label('رقم الشهاده')
                 ->contentAlignRight()
                 ->headerAlignCenter()
-                ->width(150)
+                ->width(100)
                 ->exportCallback(function ($value) {
                     return (string) $value;
                 }),
-            Column::name('nolon')
+                NumberColumn::name('cert_recipt_no')
+                ->label('الإيصال الجمركي')
+                ->contentAlignRight()
+                ->headerAlignCenter()
+                ->format()
+                ->width(100)
+                ->exportCallback(function ($value) {
+                    return (string) $value;
+                }),
+                NumberColumn::name('nolon')
                 ->label('القيمة')
                 ->contentAlignRight()
                 ->headerAlignCenter()
-                ->width(150)
+                ->format()
+                ->width(100)
                 ->exportCallback(function ($value) {
                     return (string) $value;
                 }),
-            Column::name('stamp')
+                NumberColumn::name('stamp')
                 ->label('دمغة')
                 ->contentAlignRight()
                 ->headerAlignCenter()
-                ->width(150)
+                ->format()
+                ->width(100)
                 ->exportCallback(function ($value) {
                     return (string) $value;
                 }),
-            Column::name('bpt')
+                NumberColumn::name('bpt')
                 ->label('ارباع أعمال')
                 ->contentAlignRight()
                 ->headerAlignCenter()
-                ->width(150)
+                ->format()
+                ->width(100)
                 ->exportCallback(function ($value) {
                     return (string) $value;
                 }),
-            Column::name('vat')
+                NumberColumn::name('vat')
                 ->label('قيمة مضافة')
                 ->contentAlignRight()
                 ->headerAlignCenter()
-                ->width(150)
+                ->format()
+                ->width(100)
                 ->exportCallback(function ($value) {
                     return (string) $value;
                 }),
