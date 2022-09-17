@@ -3,7 +3,9 @@
 namespace App\Models;
 
 use App\Models\User;
+use App\Models\Custom;
 use App\Models\Office;
+use App\Models\Penalty;
 use App\Models\Manfisto;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -16,6 +18,7 @@ class Account extends Model
         'model',
         'manfisto_id',
         'penalty_id',
+        'custom_id',
         'name',
         'recipt_no',
         'user_id',
@@ -31,6 +34,14 @@ class Account extends Model
     public function manfisto()
     {
         return $this->belongsTo(Manfisto::class);
+    }
+    public function penalty()
+    {
+        return $this->belongsTo(Penalty::class);
+    }
+    public function custom()
+    {
+        return $this->belongsTo(Custom::class);
     }
     public function office()
     {

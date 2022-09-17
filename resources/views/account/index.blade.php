@@ -41,6 +41,7 @@
                         data-x-placement="bottom-end">
                         <a class="dropdown-item" href="#" onclick="showMan()">المنفستو</a>
                         <a class="dropdown-item" href="#" onclick="showPen()">المخالفات</a>
+                        <a class="dropdown-item" href="#" onclick="showCustom()">شهادات جمركية</a>
                         <a class="dropdown-item" href="#" onclick="showCash()">إيصالات اليوم</a>
 
                     </div>
@@ -57,7 +58,7 @@
 @section('content')
     <!-- row -->
     <div class="row">
-        <div id="cash-manfisto" class="row" style="position: absolute; visibility: visible;"><!--manfisto-->
+        <div id="cash-manfisto" class="row" style="position: absolute; visibility: hidden;"><!--manfisto-->
             <div class="col w-auto">
 
                 <livewire:account-manfisto/>
@@ -74,6 +75,17 @@
             </div>
             <div class="col">
                  <livewire:recipt-modal-penalty />
+            </div>
+
+        </div>
+
+        <div class="row" id="cash-custom" style="position: absolute;visibility: visiable;"><!--Custom-->
+جمارك
+            <div class="col w-auto">
+                <livewire:account-custom/>
+            </div>
+            <div class="col">
+                 <livewire:recipt-custom-modal />
             </div>
 
         </div>
@@ -125,10 +137,12 @@
            // alert('manfisto');
             var manfisto = document.getElementById("cash-manfisto");
             var penalty = document.getElementById("cash-penalty");
+            var custom = document.getElementById("cash-custom");
             var cash = document.getElementById("cash-cash");
 
             manfisto.style.visibility = "visible";
             penalty.style.visibility = "hidden";
+            custom.style.visibility = "hidden";
             cash.style.visibility = "hidden";
 
         }
@@ -137,10 +151,24 @@
            // alert('pen');
             var manfisto = document.getElementById("cash-manfisto");
             var penalty = document.getElementById("cash-penalty");
+            var custom = document.getElementById("cash-custom");
             var cash = document.getElementById("cash-cash");
 
             manfisto.style.visibility = "hidden";
             penalty.style.visibility = "visible";
+            custom.style.visibility = "hidden";
+            cash.style.visibility = "hidden";
+        }
+        function showCustom() {
+           // alert('pen');
+            var manfisto = document.getElementById("cash-manfisto");
+            var penalty = document.getElementById("cash-penalty");
+            var custom = document.getElementById("cash-custom");
+            var cash = document.getElementById("cash-cash");
+
+            manfisto.style.visibility = "hidden";
+            penalty.style.visibility = "hidden";
+            custom.style.visibility = "visible";
             cash.style.visibility = "hidden";
         }
 
@@ -148,10 +176,12 @@
            // alert('cash');
             var manfisto = document.getElementById("cash-manfisto");
             var penalty = document.getElementById("cash-penalty");
+            var custom = document.getElementById("cash-custom");
             var cash = document.getElementById("cash-cash");
 
             manfisto.style.visibility = "hidden";
             penalty.style.visibility = "hidden";
+            custom.style.visibility = "hidden";
             cash.style.visibility = "visible";
         }
     </script>

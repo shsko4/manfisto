@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('model');
             $table->unsignedBigInteger('manfisto_id')->nullable();
             $table->unsignedBigInteger('penalty_id')->nullable();
+            $table->unsignedBigInteger('custom_id')->nullable();
             $table->string('name',100);
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('office_id');

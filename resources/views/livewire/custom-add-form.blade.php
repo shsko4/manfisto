@@ -1,4 +1,4 @@
-<div >
+<div>
 
     <div class="row justify-content-center">
         <form method="POST">
@@ -33,7 +33,8 @@
                 <!-------------->
                 <div class="col-span-7 mr-2">
                     <label for="cert_recipt_no"> الإيصال الجمركي <span class="tx-danger">*</span></label>
-                    <div style="color: #40c717" class="la-ball-spin-fade la-sm" wire:loading wire:target="cert_recipt_no">
+                    <div style="color: #40c717" class="la-ball-spin-fade la-sm" wire:loading
+                        wire:target="cert_recipt_no">
                         <div></div>
                         <div></div>
                         <div></div>
@@ -127,7 +128,10 @@
 
             <div class="row mt-3">
                 <div class="col">
-                    <button type="submit" wire:click.prevent="store()" class="btn btn-success btn-icons">حفظ</button>
+                    @can('add_cert', \App\Models\Custom::find($custom_id))
+                        <button type="submit" wire:click.prevent="store()" class="btn btn-success btn-icons">حفظ</button>
+                    @endcan
+
                     <button type="button" wire:click.prevent="resetInputFields()"
                         class="btn btn-secondary btn-icons">مسح الحقول</button>
                     <button type="button" wire:click.prevent="resetandback()"

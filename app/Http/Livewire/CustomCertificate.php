@@ -45,7 +45,7 @@ class CustomCertificate extends LivewireDatatable
                 ->exportCallback(function ($value) {
                     return (string) $value;
                 }),
-                NumberColumn::name('cert_recipt_no')
+            NumberColumn::name('cert_recipt_no')
                 ->label('الإيصال الجمركي')
                 ->contentAlignRight()
                 ->headerAlignCenter()
@@ -54,7 +54,7 @@ class CustomCertificate extends LivewireDatatable
                 ->exportCallback(function ($value) {
                     return (string) $value;
                 }),
-                NumberColumn::name('nolon')
+            NumberColumn::name('nolon')
                 ->label('القيمة')
                 ->contentAlignRight()
                 ->headerAlignCenter()
@@ -63,43 +63,46 @@ class CustomCertificate extends LivewireDatatable
                 ->exportCallback(function ($value) {
                     return (string) $value;
                 }),
-                NumberColumn::name('stamp')
+            NumberColumn::name('stamp')
                 ->label('دمغة')
                 ->contentAlignRight()
                 ->headerAlignCenter()
-                ->format()
+                //->format()
                 ->width(100)
+                ->enableSummary()
                 ->exportCallback(function ($value) {
-                    return (string) $value;
+                    return number_format($value, 2, ".", ",");
                 }),
-                NumberColumn::name('bpt')
+            NumberColumn::name('bpt')
                 ->label('ارباع أعمال')
                 ->contentAlignRight()
                 ->headerAlignCenter()
-                ->format()
+                //->format()
                 ->width(100)
+                ->enableSummary()
                 ->exportCallback(function ($value) {
-                    return (string) $value;
+                    return number_format($value, 2, ".", ",");
                 }),
-                NumberColumn::name('vat')
+            NumberColumn::name('vat')
                 ->label('قيمة مضافة')
                 ->contentAlignRight()
                 ->headerAlignCenter()
-                ->format()
+                //->format(0)
                 ->width(100)
+                ->enableSummary()
                 ->exportCallback(function ($value) {
-                    return (string) $value;
+                    return number_format($value, 2, ".", ",");
                 }),
-                NumberColumn::name('total')
-            ->label('الجملة')
-            ->contentAlignCenter()
-            ->headerAlignCenter()
-            ->width(250)
-            ->sortable()
-            ->enableSummary()
-            ->exportCallback(function ($value) {
-                return number_format($value, 2, ".", ",");
-            }),
+            NumberColumn::name('total')
+                ->label('الجملة')
+                ->contentAlignCenter()
+                ->headerAlignCenter()
+                ->width(250)
+                ->sortable()
+                ->enableSummary()
+                ->exportCallback(function ($value) {
+                    return number_format($value, 2, ".", ",");
+                }),
             /* Column::callback(['id'], function ($id) {
                 $customOwner = Custom::find($id);
                 return "<a href='#' wire:click='setOwner($id)' class='btn btn-sm btn-primary''><i class='las la-pen'></i></a>

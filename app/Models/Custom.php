@@ -68,4 +68,40 @@ class Custom extends Model
 
         return 0;
     }
+    public function getTotalVatAmountAttribute()
+    {
+        $data = CustomCertificate::select(DB::raw('sum(vat) as total'))
+            ->where('custom_id', $this->id)
+            ->get();
+        if ($data) {
+            $next_serial = $data->max('total');
+            return $next_serial;
+        }
+
+        return 0;
+    }
+    public function getTotalStampAmountAttribute()
+    {
+        $data = CustomCertificate::select(DB::raw('sum(stamp) as total'))
+            ->where('custom_id', $this->id)
+            ->get();
+        if ($data) {
+            $next_serial = $data->max('total');
+            return $next_serial;
+        }
+
+        return 0;
+    }
+    public function getTotalBptAmountAttribute()
+    {
+        $data = CustomCertificate::select(DB::raw('sum(bpt) as total'))
+            ->where('custom_id', $this->id)
+            ->get();
+        if ($data) {
+            $next_serial = $data->max('total');
+            return $next_serial;
+        }
+
+        return 0;
+    }
 }
