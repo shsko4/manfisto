@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use App\Models\Custom;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Mediconesystems\LivewireDatatables\Column;
 use Mediconesystems\LivewireDatatables\NumberColumn;
 use Mediconesystems\LivewireDatatables\Http\Livewire\LivewireDatatable;
@@ -72,12 +73,17 @@ class CustomOwnerList extends LivewireDatatable
                 }),
             Column::callback(['id'], function ($id) {
                 $customOwner = Custom::find($id);
-                return "<a href='#' wire:click='setOwner($id)' class='btn btn-sm btn-success'><i class='las la-file-invoice'></i></a>
-                <button wire:click='theEdit($id)'
-                class='btn btn-sm btn-info'><i class='las la-pen'></i></button>
-                <a href='#' class='modal-effect btn btn-sm btn-danger'
+                $delbtn =  "<a href='#' class='modal-effect btn btn-sm btn-danger'
                 wire:click='theDelete($id)'
                 data-penaltyowner='{{ $id }}'><i class='las la-trash'></i></a>";
+
+                if (!Gate::check('delete', $customOwner)) {
+                    $delbtn = '';
+                }
+                return "<a href='#' wire:click='setOwner($id)' class='btn btn-sm btn-success'><i class='las la-file-invoice'></i></a>
+                <button wire:click='theEdit($id)'
+                class='btn btn-sm btn-info'><i class='las la-pen'></i></button> " . $delbtn;
+
             })
                 ->label('العمليات')
                 ->contentAlignCenter()

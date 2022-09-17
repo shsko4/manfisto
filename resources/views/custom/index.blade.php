@@ -98,12 +98,12 @@
 
 
 
-        window.addEventListener('swal-owner-del-modal', event => {
-            $('#modaldemo911').modal('show');
+        window.addEventListener('swal-cert-del-modal', event => {
+            $('#modaldemo8').modal('show');
         });
 
-        window.addEventListener('swal-owner-del-modal-hide', event => {
-            $('#modaldemo911').modal('hide');
+        window.addEventListener('swal-cert-del-modal-hide', event => {
+            $('#modaldemo8').modal('hide');
         });
     </script>
 @endsection

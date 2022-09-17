@@ -11,6 +11,7 @@ class AddCustom extends Component
 {
     public $model_owner = false;
     public $customownerobj;
+    public $customcert_del_id;
     public $custom_id;
     public $name;
     public $driver_name;
@@ -25,7 +26,7 @@ class AddCustom extends Component
     public $total = 0;
     public $user_id;
     public $office_id;
-    public $listeners = ['setOwnerEvent' => 'setOwner'];
+    public $listeners = ['setOwnerEvent' => 'setOwner','confirmCertDel'];
 
     protected function rules()
     {
@@ -48,6 +49,40 @@ class AddCustom extends Component
         'user_id.required' => 'ادخل اسم مصدر السجل username',
         'office_id.required' => 'المكتب',
     ];
+
+    public function confirmCertDel($cert_id = null)
+    {
+        //dd($cert_id);
+        $this->customcert_del_id = $cert_id ;
+        //dd($this->customcert_del_id);
+        $this->dispatchBrowserEvent('swal-cert-del-modal');
+    }
+
+    public function delete()
+    {
+        //dd($this->customcert_del_id);
+        CustomCertificate::find($this->customcert_del_id)->delete();
+
+        $this->dispatchBrowserEvent('swal-cert-del-modal-hide');
+
+        $this->dispatchBrowserEvent('swal', [
+            'title' => 'تم حذف السجل بنجاح',
+            'timer' => 5000,
+            'icon' => 'success',
+            //'toast'=>true,
+            'color' => '#4169E1',
+            'background' => 'white',
+            'iconColor' => '#4169E1',
+            'heightAuto' => false,
+            'confirmButtonText' => 'تم',
+            'confirmButtonColor' => '#4169E1',
+            //'position'=>'top-left'
+        ]);
+        //session()->flash('message', 'تم مسح السجل بنجاح');
+        $this->resetInputFields();
+    }
+
+
 
     public function setOwner($id = null)
     {
@@ -88,6 +123,7 @@ class AddCustom extends Component
          $this->nolon = '';
          $this->total = '';
         $this->resetErrorBag();
+        $this->emit('refreshLivewireDatatable');
 
     }
 

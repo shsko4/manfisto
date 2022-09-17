@@ -65,7 +65,7 @@ class CustomPolicy
      */
     public function delete(User $user, Custom $custom)
     {
-        //
+        return $custom->recipt_no == null;
     }
 
     /**

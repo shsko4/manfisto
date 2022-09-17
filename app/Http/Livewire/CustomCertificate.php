@@ -3,11 +3,14 @@
 namespace App\Http\Livewire;
 
 use Carbon\Carbon;
+use App\Models\Custom;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Mediconesystems\LivewireDatatables\Column;
 use Mediconesystems\LivewireDatatables\NumberColumn;
 use App\Models\CustomCertificate as CustmCerificatModel;
+use App\Models\CustomCertificate as CustomCertificateModel;
 use Mediconesystems\LivewireDatatables\Http\Livewire\LivewireDatatable;
 
 class CustomCertificate extends LivewireDatatable
@@ -103,19 +106,28 @@ class CustomCertificate extends LivewireDatatable
                 ->exportCallback(function ($value) {
                     return number_format($value, 2, ".", ",");
                 }),
-            /* Column::callback(['id'], function ($id) {
-                $customOwner = Custom::find($id);
-                return "<a href='#' wire:click='setOwner($id)' class='btn btn-sm btn-primary''><i class='las la-pen'></i></a>
-                <button wire:click='theEdit($id)'
-                class='btn btn-sm btn-info'><i class='las la-pen'></i></button>
-                <a href='#' class='modal-effect btn btn-sm btn-danger'
-                wire:click='theDelete($id)'
-                data-penaltyowner='{{ $id }}'><i class='las la-trash'></i></a>";
+             Column::callback(['id'], function ($id) {
+                $customcert = CustomCertificateModel::find($id);
+                $customcertOwner = Custom::find($customcert->custom_id);
+
+                $del = '';
+
+                if (Gate::check('delete', $customcertOwner)) {
+                    $del = "<a href='#' class='modal-effect btn btn-sm btn-danger'
+                    wire:click='theDelete($id)'
+                    data-penaltyowner='{{ $id }}'><i class='las la-trash'></i></a>";
+                }
+                return $del;
             })
-                ->label('العمليات')
+                ->label('حذف')
                 ->contentAlignRight()
                 ->width(150),
             /*Column::delete('id')*/
         ];
+    }
+
+    public function theDelete($id)
+    {
+        $this->emit('confirmCertDel', $id);
     }
 }

@@ -58,7 +58,7 @@
 @section('content')
     <!-- row -->
     <div class="row">
-        <div id="cash-manfisto" class="row" style="position: absolute; visibility: hidden;"><!--manfisto-->
+        <div id="cash-manfisto" class="row" style="position: absolute; visibility: visiable;"><!--manfisto-->
             <div class="col w-auto">
 
                 <livewire:account-manfisto/>
@@ -79,8 +79,7 @@
 
         </div>
 
-        <div class="row" id="cash-custom" style="position: absolute;visibility: visiable;"><!--Custom-->
-جمارك
+        <div class="row" id="cash-custom" style="position: absolute;visibility: hidden;"><!--Custom-->
             <div class="col w-auto">
                 <livewire:account-custom/>
             </div>
