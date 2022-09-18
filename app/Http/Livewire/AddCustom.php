@@ -32,7 +32,7 @@ class AddCustom extends Component
     {
         return [
             'name' => 'required',
-            'cert_no' => 'required',
+            'cert_no' => 'required|unique:custom_certificates',
             'cert_recipt_no' => 'required',
             'nolon' => 'required',
             'user_id' => 'required',
@@ -44,6 +44,7 @@ class AddCustom extends Component
     protected $messages = [
         'name.required' => 'ادخل  اسم صاحب الشهاده',
         'cert_no.required' => 'ادخل  رقم الشهاده',
+        'cert_no.unique' => 'الشهاده موجوده مسبقا',
         'cert_recipt_no.required' => 'ادخل  رقم الإيصال الجمركي',
         'nolon.required' => 'ادخل قيمة الشهادة',
         'user_id.required' => 'ادخل اسم مصدر السجل username',

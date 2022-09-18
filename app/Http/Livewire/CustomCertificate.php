@@ -31,12 +31,12 @@ class CustomCertificate extends LivewireDatatable
             Column::name('serial')
                 ->label('متسلسل')
                 ->contentAlignRight()
-                ->width(100),
+                ->width(80),
             Column::name('name')
                 ->label('الإسم')
                 ->contentAlignRight()
                 ->headerAlignCenter()
-                ->width(500)
+                ->width(400)
                 ->exportCallback(function ($value) {
                     return (string) $value;
                 }),
@@ -121,7 +121,8 @@ class CustomCertificate extends LivewireDatatable
             })
                 ->label('حذف')
                 ->contentAlignRight()
-                ->width(150),
+                ->excludeFromExport()
+                ->width(100),
             /*Column::delete('id')*/
         ];
     }
@@ -130,4 +131,6 @@ class CustomCertificate extends LivewireDatatable
     {
         $this->emit('confirmCertDel', $id);
     }
+
+
 }

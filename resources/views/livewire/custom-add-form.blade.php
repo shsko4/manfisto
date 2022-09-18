@@ -145,7 +145,7 @@
         </form>
     </div>
     <div class="mt-5">
-        <livewire:custom-certificate searchable="name,serial" hideable="inline" :custom_id="$custom_id" />
+        <livewire:custom-certificate searchable="name,serial" exportable hideable="inline" :custom_id="$custom_id" />
     </div>
 </div>
    <!-- delete -->

@@ -59,7 +59,7 @@
                         @endcan
 
                         @can('جمارك')
-                            <li><a class="slide-item" href="{{ route('custom.index') }}">شهادات جمركية</a></li>
+                            <li><a class="slide-item" href="{{ route('custom.index') }}"> شهادات جمركية</a></li>
                         @endcan
 
 

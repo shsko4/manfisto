@@ -17,7 +17,7 @@
     <div class="breadcrumb-header justify-content-between" style="height: 15px">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">المخالفات</h4>
+                <h4 class="content-title mb-0 my-auto">الشهادات الجمركية</h4>
             </div>
         </div>
         <div class="d-flex my-xl-auto right-content">
@@ -50,7 +50,7 @@
 @endsection
 @section('content')
     <!-- row -->
-    <div class="row row-sm ml-2" style="position: absolute; right: 190px;">
+    <div class="row row-sm ml-2" style="position: absolute; right: 160px;">
         <div class="col-xl-12">
             <div class="card">
                 <div class="card-body">
@@ -69,6 +69,7 @@
     </div>
     <!-- Container closed -->
     </div>
+    @livewireScripts
     <!-- main-content closed -->
 @endsection
 @section('js')

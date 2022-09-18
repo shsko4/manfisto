@@ -27,6 +27,7 @@ return new class extends Migration
             $table->decimal('total',8,2);
             $table->softDeletes();
             $table->timestamps();
+            $table->unique('cert_no');
         });
     }
 

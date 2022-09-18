@@ -12,7 +12,7 @@
                 </div>
             @enderror
         </div>
-        <div class="col">
+        <div class="col-md-8">
 
             <!-------------->
             <label for="driver_name">إسم السائق</label>
