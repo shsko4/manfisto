@@ -11,6 +11,7 @@ use App\Http\Controllers\ManfistoController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\CustomController;
+use App\Http\Controllers\CustomReportController;
 use App\Http\Controllers\LocalityController;
 use App\Http\Controllers\PenaltyTypeController;
 use App\Http\Controllers\TransporterController;
@@ -81,5 +82,7 @@ Route::resource('city', CityController::class);
 Route::resource('manfisto', ManfistoController::class);
 Route::resource('account', AccountController::class);
 Route::resource('custom', CustomController::class);
+Route::resource('custom_report', CustomReportController::class);
+Route::get('search_custom', [CustomReportController::class,'search_custom'])->name('search_custom');
 
 Route::get('/{page}', [AdminController::class, 'index']);

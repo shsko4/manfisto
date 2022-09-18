@@ -95,7 +95,7 @@ class CreateUserSeeder extends Seeder
         Permission::create(['name' => 'محاسب']);
         Permission::create(['name' => 'جمارك']);
         $account_perm = ['محاسب','التقارير','تقارير الحسابات'];
-        $custom_perm = ['جمارك','العمليات'];
+        $custom_perm = ['جمارك','العمليات','تقارير جمارك','التقارير'];
         $permissions_accountant = Permission::whereIn('name', $account_perm)->get();
         $permissions_custom = Permission::whereIn('name', $custom_perm)->get();
         //$permissions_accountant1 = Permission::where('name', 'التقارير')->get();

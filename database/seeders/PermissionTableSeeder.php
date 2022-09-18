@@ -67,6 +67,7 @@ class PermissionTableSeeder extends Seeder
             'العمليات',
             'المحليات',
             'المدن',
+            'تقارير جمارك',
 
 
         ];
