@@ -2,8 +2,8 @@
 @section('css')
 
 @section('title')
-المُرحِلون
-@stop
+  إضافة منفستو
+@endsection
 
 <!-- Internal Data table css -->
 

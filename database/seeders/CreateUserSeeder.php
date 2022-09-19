@@ -56,6 +56,16 @@ class CreateUserSeeder extends Seeder
             'office_id' => '1',
         ]);
 
+        $user66 = User::create([
+            'name' => 'مدير مكتب وادي حلفا',
+            'email' => 'acc@admin.com',
+            'username' => 'adminH',
+            'password' => bcrypt('123'),
+            'roles_name' => ["owner"],
+            'status' => 'مفعل',
+            'office_id' => '184',
+        ]);
+
         $user5 = User::create([
             'name' => 'معتصم عمران',
             'email' => 'ins@admin.com',
@@ -116,6 +126,7 @@ class CreateUserSeeder extends Seeder
         $user3->assignRole([$role->id]);
         $user4->assignRole([$role_accountant->id]);
         $user5->assignRole([$role_inspector->id]);
+        $user66->assignRole([$role_inspector->id]);
         $custom_user->assignRole([$role_custom->id]);
         $custom_acc_user->assignRole([$role_accountant->id]);
     }

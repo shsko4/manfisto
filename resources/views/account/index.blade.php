@@ -1,5 +1,8 @@
 @extends('layouts.master')
 @section('css')
+@section('title')
+الحسابات
+@stop
 @livewireStyles
     @livewireScripts
 <!-- Internal Data table css -->

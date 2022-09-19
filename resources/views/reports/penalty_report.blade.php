@@ -2,7 +2,7 @@
 @section('css')
 
 @section('title')
-    المخالفات
+    تقرير المخالفات
 @stop
 
 <!-- Internal Data table css -->

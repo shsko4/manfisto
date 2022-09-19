@@ -1,7 +1,7 @@
 @extends('layouts.master2')
 
 @section('title')
-    تسجيل الدخول - مورا نافذه امدرمان
+    تسجيل الدخول
 @endsection
 
 

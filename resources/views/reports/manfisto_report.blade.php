@@ -2,7 +2,7 @@
 @section('css')
 
 @section('title')
-    المنفستو
+    تقرير المنفستو
 @stop
 
 <!-- Internal Data table css -->

@@ -1,26 +1,27 @@
 <?php
 
 use App\Models\Account;
+use App\Models\Locality;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CityController;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\StateController;
+use App\Http\Controllers\CustomController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\PenaltyController;
+use App\Http\Controllers\LocalityController;
 use App\Http\Controllers\ManfistoController;
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\CityController;
-use App\Http\Controllers\CustomController;
-use App\Http\Controllers\CustomReportController;
-use App\Http\Controllers\LocalityController;
 use App\Http\Controllers\PenaltyTypeController;
 use App\Http\Controllers\TransporterController;
+use App\Http\Controllers\CustomReportController;
 use App\Http\Controllers\PenaltyOwnerController;
-use App\Http\Controllers\ReportController;
-use App\Http\Controllers\StateController;
+use App\Http\Controllers\CustomCertReportController;
 use App\Http\Controllers\UserManagement\RoleController;
 use App\Http\Controllers\UserManagement\UserController;
-use App\Models\Locality;
 
 /*
 |--------------------------------------------------------------------------
@@ -83,6 +84,10 @@ Route::resource('manfisto', ManfistoController::class);
 Route::resource('account', AccountController::class);
 Route::resource('custom', CustomController::class);
 Route::resource('custom_report', CustomReportController::class);
+Route::resource('cert_report', CustomCertReportController::class);
 Route::get('search_custom', [CustomReportController::class,'search_custom'])->name('search_custom');
+Route::get('search_cert', [CustomCertReportController::class,'get_custom_cert'])->name('search_cert');
+/*Route::get('cert_report', [CustomCertReportController::class,'index'])->name('search_custom_cert');
+Route::get('search_custom_cert/{custom_id}', [CustomCertReportController::class,'get_custom_cert'])->name('get_certs');*/
 
 Route::get('/{page}', [AdminController::class, 'index']);

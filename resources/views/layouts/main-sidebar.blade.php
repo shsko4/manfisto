@@ -107,6 +107,9 @@
                         @can('تقارير جمارك')
                             <li><a class="slide-item" href="{{ route('custom_report.index') }}">تقارير الجمارك</a></li>
                         @endcan
+                        @can('تقارير جمارك')
+                            <li><a class="slide-item" href="{{ route('cert_report.index') }}">تفاصيل الشهادات</a></li>
+                        @endcan
 
                         @can('تقارير الحسابات')
                             <li><a class="slide-item" href="#">تقارير الحسابات</a></li>

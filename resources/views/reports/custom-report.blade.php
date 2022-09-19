@@ -115,31 +115,36 @@
             <div class="card-body">
                 <div class="table-responsive">
                     @if (isset($customs))
-                        <table id="example" class="table key-buttons text-md-nowrap" style=" text-align: center">
+                        <table id="example" class="table key-buttons " style=" text-align: center">
                             <thead>
                                 <tr>
+
                                     <th class="border-bottom-0">#</th>
                                     <th class="border-bottom-0">السائق</th>
                                     <th class="border-bottom-0">رقم العربة</th>
                                     <th class="border-bottom-0">عدد الشهادات</th>
-                                    <th class="border-bottom-0">الجملة</th>
                                     <th class="border-bottom-0">رقم الإيضال</th>
+                                    <th class="border-bottom-0">الجملة</th>
                                     <th class="border-bottom-0">التاريخ</th>
 
 
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php $i = 0; ?>
+                                <?php $i = 0;
+                                $thetotal = 0;
+                                ?>
                                 @foreach ($customs as $custom)
-                                    <?php $i++; ?>
+                                    <?php $i++;
+                                    $thetotal = $thetotal + $custom->total_tax_amount;
+                                     ?>
                                     <tr>
                                         <td>{{ $i }}</td>
-                                        <td>{{ $custom->driver_name }} </td>
+                                        <td><a href="{{ route('cert_report.edit',$custom->id) }}">{{ $custom->driver_name }}</a> </td>
                                         <td>{{ $custom->car_no }}</td>
                                         <td>{{ $custom->cert_count }}</td>
-                                        <td>{{ $custom->total_tax_amount }}</td>
                                         <td>{{ $custom->recipt_no }}</td>
+                                        <td>{{ $custom->total_tax_amount }}</td>
                                         <td>{{ $custom->date_of_trip }}</td>
 
 
@@ -148,7 +153,17 @@
 
                                         </td>-->
                                     </tr>
+
                                 @endforeach
+                                <tr>
+                                    <td ></td>
+                                    <td ></td>
+                                    <td ></td>
+                                    <td ></td>
+                                    <td ></td>
+                                    <td ><h5 class="font-extrabold">{{ $thetotal }}</h5></td>
+                                    <td></td>
+                                </tr>
                             </tbody>
                         </table>
 

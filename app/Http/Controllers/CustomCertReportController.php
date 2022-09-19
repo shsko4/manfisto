@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CustomCertificate;
 use Illuminate\Http\Request;
+use App\Models\CustomCertificate;
+use Illuminate\Support\Facades\DB;
 
 class CustomCertReportController extends Controller
 {
@@ -12,11 +13,39 @@ class CustomCertReportController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('permission:تقارير جمارك');
+    }
+
     public function index()
     {
-        $custom_certs = CustomCertificate::all();
-        return view('reports.custom-cert-report',compact('custom_certs'));
+        //$custom_certs = CustomCertificate::all();
+        //dd($custom_certs);
+        return view('reports.custom-cert-report');
     }
+
+    public function get_custom_cert(Request $request)
+    {
+
+        $radio = $request->radio;
+        $custom_certs = CustomCertificate::all();
+        if ($radio == 1) {
+            if ($request->start_at == '' && $request->end_at == '') {
+                $custom_certs = CustomCertificate::all();
+                return view('reports.custom-cert-report', compact('custom_certs'));
+            } else {
+                $start_at = date($request->start_at);
+                $end_at = date($request->end_at);
+                $custom_certs = CustomCertificate::whereBetween(DB::raw('date(created_at)'),[$start_at,$end_at])->get();
+                return view('reports.custom-cert-report', compact('custom_certs','start_at','end_at'));
+            }
+        }
+
+        return view('reports.custom-cert-report', compact('custom_certs'));
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -58,7 +87,8 @@ class CustomCertReportController extends Controller
      */
     public function edit($id)
     {
-        //
+        $custom_certs = CustomCertificate::where('custom_id',$id)->get();
+        return view('reports.custom-cert-report',compact('custom_certs'));
     }
 
     /**

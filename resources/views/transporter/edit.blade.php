@@ -2,7 +2,7 @@
 @section('css')
 
 @section('title')
-    المُرحِلون
+    المُرحِلون-تعديل
 @stop
 
 <!-- Internal Data table css -->
