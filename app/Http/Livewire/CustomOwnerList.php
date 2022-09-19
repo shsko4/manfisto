@@ -100,6 +100,7 @@ class CustomOwnerList extends LivewireDatatable
 
     public function theDelete($id)
     {
+        //dd($id);
         $this->emit('confirmPenDel', $id);
     }
     public function setOwner($id)

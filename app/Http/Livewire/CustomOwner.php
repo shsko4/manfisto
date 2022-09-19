@@ -169,7 +169,7 @@ class CustomOwner extends Component
 
     public function confirmPenDel($id)
     {
-        //dd($id);
+        //dd($id.'44444');
         $this->customowner_id = $id;
         $this->dispatchBrowserEvent('swal-owner-del-modal');
     }

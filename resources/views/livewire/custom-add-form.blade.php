@@ -154,7 +154,7 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content modal-content-demo">
                     <div class="modal-header">
-                        <h6 class="modal-title">حذف مرحل</h6><button aria-label="Close" class="close" data-dismiss="modal"
+                        <h6 class="modal-title">حذف سجل</h6><button aria-label="Close" class="close" data-dismiss="modal"
                             type="button"><span aria-hidden="true">&times;</span></button>
                     </div>
 
