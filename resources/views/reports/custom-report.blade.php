@@ -61,13 +61,13 @@
 
                     <div class="col-lg-3">
                         <label class="rdiobox">
-                            <input checked name="rdio" type="radio" value="1" id="type_div"> <span>بحث بالفتره
+                            <input checked name="radio" type="radio" value="1" id="type_div" class="radio"> <span>بحث بالفتره
                             </span></label>
                     </div>
 
 
                     <div class="col-lg-3 mg-t-20 mg-lg-t-0">
-                        <label class="rdiobox"><input name="rdio" value="2" type="radio"><span>بحث برقم الشهادة
+                        <label class="rdiobox"><input name="radio" value="2" type="radio" class="radio"><span>بحث برقم الشهادة
                             </span></label>
                     </div><br><br>
 

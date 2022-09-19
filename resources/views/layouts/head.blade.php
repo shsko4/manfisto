@@ -1,7 +1,7 @@
 <!-- Favicon -->
 <link rel="icon" href="{{URL::asset('assets/img/brand/headertax3favicon.png')}}" type="image/x-icon"/>
 <!-- Title -->
-<title> نظام النوافذ </title>
+<title> @yield("title") </title>
 <!-- Icons css -->
 <link href="{{URL::asset('assets/css/icons.css')}}" rel="stylesheet">
 <!--  Custom Scroll bar-->

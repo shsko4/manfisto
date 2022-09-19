@@ -1,5 +1,8 @@
 @extends('layouts.master')
 @section('css')
+@section('title')
+الشهادات الجمركية
+@stop
     <!-- Internal Data table css -->
 
     <link href="{{ URL::asset('assets/plugins/datatable/css/dataTables.bootstrap4.min.css') }}" rel="stylesheet" />
@@ -54,6 +57,7 @@
         <div class="col-xl-12">
             <div class="card">
                 <div class="card-body">
+                    <div class="card-title">إضافة شهادات جمركية بتاريخ : {{ date_format(Carbon\Carbon::now(),'Y-d-m') }}</div>
                     @if (session()->has('message'))
                         <div class="alert alert-success">
                             {{ session('message') }}
