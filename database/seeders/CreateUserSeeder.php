@@ -58,7 +58,7 @@ class CreateUserSeeder extends Seeder
 
         $user66 = User::create([
             'name' => 'مدير مكتب وادي حلفا',
-            'email' => 'acc@admin.com',
+            'email' => 'custom_admin@admin.com',
             'username' => 'adminH',
             'password' => bcrypt('123'),
             'roles_name' => ["owner"],
