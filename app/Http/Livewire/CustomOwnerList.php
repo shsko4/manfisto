@@ -75,14 +75,14 @@ class CustomOwnerList extends LivewireDatatable
                 $customOwner = Custom::find($id);
                 $delbtn =  "<a href='#' class='modal-effect btn btn-sm btn-danger'
                 wire:click='theDelete($id)'
-                data-penaltyowner='{{ $id }}'><i class='las la-trash'></i></a>";
+                data-penaltyowner='{{ $id }}' title='حذف'><i class='las la-trash'></i></a>";
 
                 if (!Gate::check('delete', $customOwner)) {
                     $delbtn = '';
                 }
-                return "<a href='#' wire:click='setOwner($id)' class='btn btn-sm btn-success'><i class='las la-file-invoice'></i></a>
+                return "<a href='#' wire:click='setOwner($id)' class='btn btn-sm btn-success' title='إضافة وعرض الشهادات'><i class='las la-file-invoice'></i></a>
                 <button wire:click='theEdit($id)'
-                class='btn btn-sm btn-info'><i class='las la-pen'></i></button> " . $delbtn;
+                class='btn btn-sm btn-info' title='تعديل'><i class='las la-pen'></i></button> " . $delbtn;
 
             })
                 ->label('العمليات')

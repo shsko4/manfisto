@@ -15,6 +15,7 @@ use App\Http\Controllers\PenaltyController;
 use App\Http\Controllers\LocalityController;
 use App\Http\Controllers\ManfistoController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\PenaltyTypeController;
 use App\Http\Controllers\TransporterController;
 use App\Http\Controllers\CustomReportController;
@@ -85,8 +86,11 @@ Route::resource('account', AccountController::class);
 Route::resource('custom', CustomController::class);
 Route::resource('custom_report', CustomReportController::class);
 Route::resource('cert_report', CustomCertReportController::class);
+Route::resource('pass', PasswordController::class);
 Route::get('search_custom', [CustomReportController::class,'search_custom'])->name('search_custom');
 Route::get('search_cert', [CustomCertReportController::class,'get_custom_cert'])->name('search_cert');
+//Route::get('pass', [PasswordController::class,'update'])->name('update_password');
+Route::get('pass', [PasswordController::class,'index'])->name('index_password');
 /*Route::get('cert_report', [CustomCertReportController::class,'index'])->name('search_custom_cert');
 Route::get('search_custom_cert/{custom_id}', [CustomCertReportController::class,'get_custom_cert'])->name('get_certs');*/
 

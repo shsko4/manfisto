@@ -115,7 +115,7 @@ class CustomCertificate extends LivewireDatatable
                 if (Gate::check('delete', $customcertOwner)) {
                     $del = "<a href='#' class='modal-effect btn btn-sm btn-danger'
                     wire:click='theDelete($id)'
-                    data-penaltyowner='{{ $id }}'><i class='las la-trash'></i></a>";
+                    data-penaltyowner='{{ $id }}' title='حذف'><i class='las la-trash'></i></a>";
                 }
                 return $del;
             })

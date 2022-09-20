@@ -21,8 +21,8 @@
                         src="{{ URL::asset('assets/img/faces/6.jpg') }}"><span
                         class="avatar-status profile-status bg-green"></span>
                 </div>-->
-                <div class="user-info">
-                    <h4 class="font-weight-semibold mt-3 mb-0">{{ Auth::user()->name }}</h4>
+                <div class="user-info text-green-600">
+                    <a href="{{ route('index_password') }}" title="نعديل كلمة المرور"><h6 class="font-weight-semibold mt-3 mb-0  ">{{ Auth::user()->name }}</h6></a>
                     <h6 class="font-weight-semibold mt-3 mb-0">{{ Auth::user()->office->name }}</h6>
                     <span class="mb-0 text-muted">{{ auth()->user()->main_role }}</span>
                 </div>

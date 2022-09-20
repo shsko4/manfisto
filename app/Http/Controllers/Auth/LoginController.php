@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
@@ -41,5 +42,9 @@ class LoginController extends Controller
     protected function credentials(\Illuminate\Http\Request $request)
     {
         return ['username' => $request->username, 'password' => $request->password, 'status' => 'مفعل'];
+    }
+    protected function authenticated()
+    {
+        Auth::logoutOtherDevices(request('password'));
     }
 }
