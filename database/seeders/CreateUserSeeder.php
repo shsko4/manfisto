@@ -126,7 +126,7 @@ class CreateUserSeeder extends Seeder
         $user3->assignRole([$role->id]);
         $user4->assignRole([$role_accountant->id]);
         $user5->assignRole([$role_inspector->id]);
-        $user66->assignRole([$role_inspector->id]);
+        $user66->assignRole([$role->id]);
         $custom_user->assignRole([$role_custom->id]);
         $custom_acc_user->assignRole([$role_accountant->id]);
     }
