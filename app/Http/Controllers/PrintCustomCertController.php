@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
+//use Barryvdh\DomPDF\Facade\Pdf as PDF;
+use App\Models\Custom;
 use Illuminate\Http\Request;
 use App\Models\CustomCertificate;
 use Illuminate\Support\Facades\App;
-use Barryvdh\DomPDF\Facade\Pdf as PDF;
+use niklasravnsborg\LaravelPdf\Facades\Pdf as PDF;
 
 class PrintCustomCertController extends Controller
 {
@@ -25,14 +28,23 @@ class PrintCustomCertController extends Controller
         return view('reports.print-custom-cert');
     }
 
-    public function print_cert_pdf()
+    public function print_cert_pdf($id)
     {
+       // $image = base64_encode(file_get_contents(public_path('assets/img/wadi-half-logo.png')));
         // retreive all records from db
-        $custom_certs = CustomCertificate::all();
-        // share data to view
-        $pdf = App::make('dompdf.wrapper');
-    $pdf->loadView('reports.print-custom-cert');
-    return $pdf->stream();
+        $data = [
+            'foo' => 'bar'
+        ];
+        $custom_certs = CustomCertificate::where('custom_id', $id)->get();
+        $custom = Custom::find($id);
+        $driver_name = $custom->driver_name;
+        $car_no = $custom->car_no;
+        $total_tax_amount = $custom->total_tax_amount;
+        $total_bpt_amount = $custom->total_bpt_amount;
+        $total_stamp_amount = $custom->total_stamp_amount;
+        $total_vat_amount = $custom->total_vat_amount;
+        $pdf = PDF::loadView('pdf.document', compact('custom_certs','driver_name','car_no','total_tax_amount'));
+        return $pdf->stream('document'.Carbon::now().'.pdf');
     }
 
     /**
@@ -76,6 +88,7 @@ class PrintCustomCertController extends Controller
     public function edit($id)
     {
         $custom_certs = CustomCertificate::where('custom_id', $id)->get();
+        //dd($custom_certs);
         return view('reports.print-custom-cert', compact('custom_certs'));
     }
 

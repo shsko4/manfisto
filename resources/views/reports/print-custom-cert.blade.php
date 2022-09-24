@@ -55,7 +55,7 @@
 
             <div class="card-header pb-0">
 
-                <form action="{{ route('print-cert-pdf') }}" method="GET" role="search" autocomplete="off">
+                <form action="{{ route('print-cert-pdf',3) }}" method="GET" role="search" autocomplete="off">
                     {{ csrf_field() }}
 
 

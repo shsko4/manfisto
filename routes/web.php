@@ -91,7 +91,7 @@ Route::resource('print-cert', PrintCustomCertController::class);
 Route::resource('pass', PasswordController::class);
 Route::get('search_custom', [CustomReportController::class,'search_custom'])->name('search_custom');
 Route::get('search_cert', [CustomCertReportController::class,'get_custom_cert'])->name('search_cert');
-Route::get('print-cert-pdf', [PrintCustomCertController::class,'print_cert_pdf'])->name('print-cert-pdf');
+Route::get('print-cert-pdf/{custom_cert}', [PrintCustomCertController::class,'print_cert_pdf'])->name('print-cert-pdf');
 //Route::get('pass', [PasswordController::class,'update'])->name('update_password');
 Route::get('pass', [PasswordController::class,'index'])->name('index_password');
 /*Route::get('cert_report', [CustomCertReportController::class,'index'])->name('search_custom_cert');
