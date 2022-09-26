@@ -15,7 +15,7 @@
     <link href="{{ URL::asset('assets/plugins/select2/css/select2.min.css') }}" rel="stylesheet">
 
 @section('title')
-تقرير الشهادات الجمركية
+    تقرير الشهادات الجمركية
 @stop
 @endsection
 @section('page-header')
@@ -61,13 +61,15 @@
 
                     <div class="col-lg-3">
                         <label class="rdiobox">
-                            <input checked name="radio" type="radio" value="1" id="type_div" class="radio"> <span>بحث بالفتره
+                            <input checked name="radio" type="radio" value="1" id="type_div" class="radio">
+                            <span>بحث بالفتره
                             </span></label>
                     </div>
 
 
                     <div class="col-lg-3 mg-t-20 mg-lg-t-0">
-                        <label class="rdiobox"><input name="radio" value="2" type="radio" class="radio"><span>بحث برقم الشهادة
+                        <label class="rdiobox"><input name="radio" value="2" type="radio"
+                                class="radio"><span>بحث برقم الشهادة
                             </span></label>
                     </div><br><br>
 
@@ -87,7 +89,7 @@
                                         <i class="fas fa-calendar-alt"></i>
                                     </div>
                                 </div><input class="form-control fc-datepicker" value="{{ $start_at ?? '' }}"
-                                    name="start_at" placeholder="YYYY-MM-DD" type="text">
+                                    name="start_at" placeholder="YYYY-MM-DD" type="text" required>
                             </div><!-- input-group -->
                         </div>
 
@@ -99,33 +101,54 @@
                                         <i class="fas fa-calendar-alt"></i>
                                     </div>
                                 </div><input class="form-control fc-datepicker" name="end_at"
-                                    value="{{ $end_at ?? '' }}" placeholder="YYYY-MM-DD" type="text">
+                                    value="{{ $end_at ?? '' }}" placeholder="YYYY-MM-DD" type="text" required>
                             </div><!-- input-group -->
                         </div>
                     </div><br>
-
-                    <div class="row">
-                        <div class="col-sm-1 col-md-1">
-                            <button class="btn btn-primary">بحث</button>
+                    <div class="flex justify-between">
+                        <div class="row">
+                            <div class="col-sm-1 col-md-1">
+                                <button class="btn btn-primary">بحث</button>
+                            </div>
                         </div>
+
+
                     </div>
+
                 </form>
 
             </div>
             <div class="card-body">
+
                 <div class="table-responsive">
                     @if (isset($customs))
-                        <table id="example" class="table key-buttons " style=" text-align: center">
+                        <form action="{{ route('custom-pdf') }}" method="GET" role="search" autocomplete="off">
+                            @csrf
+
+                            <input class="form-control fc-datepicker" value="{{ $start_at ?? '' }}" name="start_at"
+                                placeholder="YYYY-MM-DD" type="hidden">
+                            <input class="form-control fc-datepicker" name="end_at" value="{{ $end_at ?? '' }}"
+                                placeholder="YYYY-MM-DD" type="hidden" required>
+                            <div class="mt-3 mb-3">
+                                <button class="modal-effect btn btn-sm btn-primary" type="submit"
+                                    style="color:white"><i class="fas fa-file-download"></i>&nbsp;تصدير PDF</button>
+                            </div>
+                        </form>
+
+                        <table id="example1" class="table text-md-nowrap dataTable no-footer " role="grid"
+                            style=" text-align: center">
                             <thead>
                                 <tr>
 
                                     <th class="border-bottom-0">#</th>
                                     <th class="border-bottom-0">السائق</th>
                                     <th class="border-bottom-0">رقم العربة</th>
-                                    <th class="border-bottom-0">عدد الشهادات</th>
+                                    <!--<th class="border-bottom-0">عدد الشهادات</th>-->
+                                    <th class="border-bottom-0">الحالة</th>
                                     <th class="border-bottom-0">رقم الإيضال</th>
                                     <th class="border-bottom-0">الجملة</th>
                                     <th class="border-bottom-0">التاريخ</th>
+                                    <th class="border-bottom-0">طباعه</th>
 
 
                                 </tr>
@@ -137,15 +160,36 @@
                                 @foreach ($customs as $custom)
                                     <?php $i++;
                                     $thetotal = $thetotal + $custom->total_tax_amount;
-                                     ?>
+                                    ?>
                                     <tr>
                                         <td>{{ $i }}</td>
-                                        <td><a href="{{ route('cert_report.edit',$custom->id) }}">{{ $custom->driver_name }}</a> </td>
+                                        <td><a
+                                                href="{{ route('cert_report.edit', $custom->id) }}">{{ $custom->driver_name }}</a>
+                                        </td>
                                         <td>{{ $custom->car_no }}</td>
-                                        <td>{{ $custom->cert_count }}</td>
+                                        <!-- <td>{{ $custom->cert_count }}</td>-->
+                                        <td>
+                                            @if ($custom->recipt_no != '')
+                                                <span class="label text-success d-flex mr-4">
+                                                    <div class="dot-label bg-success justify-center"></div> تم الدفع
+                                                </span>
+                                            @else
+                                                <span class="label text-danger d-flex mr-4">
+                                                    <div class="dot-label bg-danger"></div> غير مدفوع
+                                                </span>
+                                            @endif
+
+                                        </td>
                                         <td>{{ $custom->recipt_no }}</td>
                                         <td>{{ $custom->total_tax_amount }}</td>
                                         <td>{{ $custom->date_of_trip }}</td>
+                                        <td>
+                                            @cannot('delete', $custom)
+                                                <a href="{{ route('print-cert-pdf', $custom->id) }}"
+                                                    class='btn btn-sm btn-success' title='طباعة'><i
+                                                        class='las la-print'></i></a>
+                                            @endcan
+                                        </td>
 
 
                                         <!--<td>
@@ -153,17 +197,8 @@
 
                                         </td>-->
                                     </tr>
-
                                 @endforeach
-                                <tr>
-                                    <td ></td>
-                                    <td ></td>
-                                    <td ></td>
-                                    <td ></td>
-                                    <td ></td>
-                                    <td ><h5 class="font-extrabold">{{ $thetotal }}</h5></td>
-                                    <td></td>
-                                </tr>
+
                             </tbody>
                         </table>
 
@@ -222,7 +257,6 @@
     var date = $('.fc-datepicker').datepicker({
         dateFormat: 'yy-mm-dd'
     }).val();
-
 </script>
 
 <script>
@@ -244,7 +278,6 @@
             }
         });
     });
-
 </script>
 
 

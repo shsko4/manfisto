@@ -36,4 +36,9 @@ class CustomReportController extends Controller
 
         return view('reports.custom-report', compact('customs'));
     }
+
+    public function custom_pdf(Request $request)
+    {
+        dd($request->start_at);
+    }
 }

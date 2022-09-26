@@ -86,6 +86,7 @@ Route::resource('manfisto', ManfistoController::class);
 Route::resource('account', AccountController::class);
 Route::resource('custom', CustomController::class);
 Route::resource('custom_report', CustomReportController::class);
+Route::get('custom-pdf', [CustomReportController::class,'custom_pdf'])->name('custom-pdf');
 Route::resource('cert_report', CustomCertReportController::class);
 Route::resource('print-cert', PrintCustomCertController::class);
 Route::resource('pass', PasswordController::class);

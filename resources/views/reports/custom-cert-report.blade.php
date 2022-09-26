@@ -115,7 +115,7 @@
             <div class="card-body">
                 <div class="table-responsive">
                     @if (isset($custom_certs))
-                        <table id="example" class="table key-buttons text-md-nowrap" style=" text-align: center">
+                        <table id="example1" class="table text-md-nowrap dataTable no-footer" style=" text-align: center">
                             <thead>
                                 <tr>
                                     <th class="border-bottom-0">#</th>
