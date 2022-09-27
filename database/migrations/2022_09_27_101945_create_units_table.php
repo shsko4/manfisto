@@ -13,11 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('q_r_s', function (Blueprint $table) {
+        Schema::create('units', function (Blueprint $table) {
             $table->id();
-            $table->string('qr');
-            $table->string('img')->nullable();
+            $table->string('name');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('office_id');
+            $table->softDeletes();
             $table->timestamps();
+           // $table->unique('name');
         });
     }
 
@@ -28,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('q_r_s');
+        Schema::dropIfExists('units');
     }
 };

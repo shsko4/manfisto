@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Unit;
 use App\Models\Office;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
@@ -67,5 +68,10 @@ class User extends Authenticatable
     public function penalty()
     {
         return $this->hasMany(Penalty::class);
+    }
+
+    public function unit()
+    {
+        return $this->hasMany(Unit::class);
     }
 }

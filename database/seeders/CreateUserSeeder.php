@@ -85,12 +85,84 @@ class CreateUserSeeder extends Seeder
             'status' => 'مفعل',
             'office_id' => '184',
         ]);
+        $custom_user1 = User::create([
+            'name' => 'شرف الدين احمد محمد',
+            'email' => 'inspector1@manfisto.com',
+            'username' => 'ins1481',
+            'password' => bcrypt('123456'),
+            'roles_name' => ["جمارك"],
+            'status' => 'مفعل',
+            'office_id' => '184',
+        ]);
+        $custom_user2 = User::create([
+            'name' => 'ياسر حسين احمد',
+            'email' => 'inspector2@manfisto.com',
+            'username' => 'ins1482',
+            'password' => bcrypt('123456'),
+            'roles_name' => ["جمارك"],
+            'status' => 'مفعل',
+            'office_id' => '184',
+        ]);
+        $custom_user3 = User::create([
+            'name' => 'حسام الدين محمد حسن',
+            'email' => 'inspector3@manfisto.com',
+            'username' => 'ins1483',
+            'password' => bcrypt('123456'),
+            'roles_name' => ["جمارك"],
+            'status' => 'مفعل',
+            'office_id' => '184',
+        ]);
+        $custom_user4 = User::create([
+            'name' => 'اسامه محمد وهبي',
+            'email' => 'inspector4@manfisto.com',
+            'username' => 'ins1484',
+            'password' => bcrypt('123456'),
+            'roles_name' => ["جمارك"],
+            'status' => 'مفعل',
+            'office_id' => '184',
+        ]);
+        $custom_user5 = User::create([
+            'name' => 'عمر عبدالعزيز احمد',
+            'email' => 'inspector5@manfisto.com',
+            'username' => 'ins1485',
+            'password' => bcrypt('123456'),
+            'roles_name' => ["جمارك"],
+            'status' => 'مفعل',
+            'office_id' => '184',
+        ]);
 
         $custom_acc_user = User::create([
             'name' => 'محاسب مكتب وادي حلفا',
             'email' => 'custom_acc@admin.com',
             'username' => 'custom_acc',
-            'password' => bcrypt('123'),
+            'password' => bcrypt('123456'),
+            'roles_name' => ["accountant"],
+            'status' => 'مفعل',
+            'office_id' => '184',
+        ]);
+        $custom_acc_user1 = User::create([
+            'name' => 'عماد حسين',
+            'email' => 'acc1841@manfisto.com',
+            'username' => 'acc1841',
+            'password' => bcrypt('123456'),
+            'roles_name' => ["accountant"],
+            'status' => 'مفعل',
+            'office_id' => '184',
+        ]);
+        $custom_acc_user2 = User::create([
+            'name' => 'محمد عبد العزيز احمد',
+            'email' => 'acc1842@manfisto.com',
+            'username' => 'acc1842',
+            'password' => bcrypt('123456'),
+            'roles_name' => ["accountant"],
+            'status' => 'مفعل',
+            'office_id' => '184',
+        ]);
+        $custom_acc_user3 = User::create([
+            'name' => 'معتصم محمد دفع الله',
+            'email' => 'acc1843@manfisto.com',
+            'username' => 'acc1843',
+            'password' => bcrypt('123456'),
             'roles_name' => ["accountant"],
             'status' => 'مفعل',
             'office_id' => '184',
@@ -128,6 +200,14 @@ class CreateUserSeeder extends Seeder
         $user5->assignRole([$role_inspector->id]);
         $user66->assignRole([$role->id]);
         $custom_user->assignRole([$role_custom->id]);
+        $custom_user1->assignRole([$role_custom->id]);
+        $custom_user2->assignRole([$role_custom->id]);
+        $custom_user3->assignRole([$role_custom->id]);
+        $custom_user4->assignRole([$role_custom->id]);
+        $custom_user5->assignRole([$role_custom->id]);
         $custom_acc_user->assignRole([$role_accountant->id]);
+        $custom_acc_user1->assignRole([$role_accountant->id]);
+        $custom_acc_user2->assignRole([$role_accountant->id]);
+        $custom_acc_user3->assignRole([$role_accountant->id]);
     }
 }

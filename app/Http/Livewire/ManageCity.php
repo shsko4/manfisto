@@ -30,7 +30,6 @@ class ManageCity extends Component
         ];
     }
 
-
     protected $messages = [
         'name.unique' => 'إسم المدينة مسجل مسبقاً !',
         'locality_id.required' => 'إختر المحلية',
@@ -71,7 +70,7 @@ class ManageCity extends Component
     {
         $validatedDate = $this->validate();
 
-        $city = City::find($this->locality_id);
+        $city = City::find($this->city_id);
         $city->update($validatedDate);
 
 
@@ -106,7 +105,7 @@ class ManageCity extends Component
 
     public function editCity($id)
     {
-        //dd('mangae');
+        //dd($id);
         $city = City::findOrFail($id);
         $this->city_id = $id;
         $this->locality_id = $city->locality_id;

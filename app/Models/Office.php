@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Unit;
 use App\Models\User;
 use App\Models\Penalty;
 use App\Models\Manfisto;
@@ -35,6 +36,11 @@ class Office extends Model
     public function transporter()
     {
         return $this->hasMany(Transport::class);
+    }
+
+    public function unit()
+    {
+        return $this->hasMany(Unit::class);
     }
 
 

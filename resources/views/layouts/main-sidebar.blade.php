@@ -176,6 +176,10 @@
                         <li><a class="slide-item" href="{{ route('city.index') }}">المُدن</a></li>
                         @endcan
 
+                        @can('الوحدات')
+                        <li><a class="slide-item" href="{{ route('unit.index') }}">الوحدات</a></li>
+                        @endcan
+
                     </ul>
                 </li>
             @endcan
