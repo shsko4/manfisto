@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Unit;
 use App\Models\Office;
+use App\Models\Category;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
@@ -77,6 +78,6 @@ class User extends Authenticatable
 
     public function category()
     {
-        return $this->hasMany(Unit::class);
+        return $this->hasMany(Category::class);
     }
 }

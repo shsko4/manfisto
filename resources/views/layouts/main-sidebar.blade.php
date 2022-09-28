@@ -184,6 +184,10 @@
                         <li><a class="slide-item" href="{{ route('category.index') }}">أصناف البضائع</a></li>
                         @endcan
 
+                        @can('بضائع')
+                        <li><a class="slide-item" href="{{ route('item.index') }}"> البضائع</a></li>
+                        @endcan
+
                     </ul>
                 </li>
             @endcan

@@ -23,6 +23,7 @@ use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PrintCustomCertController;
 use App\Http\Controllers\CustomCertReportController;
+use App\Http\Controllers\ItemController;
 use App\Http\Controllers\UnitController;
 use App\Http\Controllers\UserManagement\RoleController;
 use App\Http\Controllers\UserManagement\UserController;
@@ -85,6 +86,7 @@ Route::resource('locality', LocalityController::class);
 Route::resource('city', CityController::class);
 Route::resource('unit', UnitController::class);
 Route::resource('category', CategoryController::class);
+Route::resource('item', ItemController::class);
 
 Route::resource('manfisto', ManfistoController::class);
 Route::resource('account', AccountController::class);

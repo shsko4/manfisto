@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Unit;
 use App\Models\User;
 use App\Models\Penalty;
+use App\Models\Category;
 use App\Models\Manfisto;
 use Illuminate\Database\Eloquent\Model;
 use Symfony\Component\Mailer\Transport;
@@ -45,7 +46,7 @@ class Office extends Model
 
     public function category()
     {
-        return $this->hasMany(Unit::class);
+        return $this->hasMany(Category::class);
     }
 
 

@@ -108,7 +108,6 @@
                                 <input type="text" class="form-control" id="dest" name="dest"
                                     placeholder="الوجهه" required value="{{ old('dest', $manfisto->dest) }}">
                             </div>-->
-
                             <div class="form-group col-md-2">
                                 <label for="city_id" style="font-size: 20px">الوجهه</label>
                                 <select name="city_id" id="city_id" class="form-control select2" required>
