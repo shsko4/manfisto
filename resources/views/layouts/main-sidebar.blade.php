@@ -180,6 +180,10 @@
                         <li><a class="slide-item" href="{{ route('unit.index') }}">الوحدات</a></li>
                         @endcan
 
+                        @can('تصنيفات')
+                        <li><a class="slide-item" href="{{ route('category.index') }}">أصناف البضائع</a></li>
+                        @endcan
+
                     </ul>
                 </li>
             @endcan

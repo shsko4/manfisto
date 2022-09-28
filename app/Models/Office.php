@@ -43,5 +43,10 @@ class Office extends Model
         return $this->hasMany(Unit::class);
     }
 
+    public function category()
+    {
+        return $this->hasMany(Unit::class);
+    }
+
 
 }

@@ -20,6 +20,7 @@ use App\Http\Controllers\TransporterController;
 use App\Http\Controllers\CustomReportController;
 use App\Http\Controllers\PenaltyOwnerController;
 use App\Http\Controllers\Auth\PasswordController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PrintCustomCertController;
 use App\Http\Controllers\CustomCertReportController;
 use App\Http\Controllers\UnitController;
@@ -83,6 +84,7 @@ Route::resource('penalty', PenaltyController::class);
 Route::resource('locality', LocalityController::class);
 Route::resource('city', CityController::class);
 Route::resource('unit', UnitController::class);
+Route::resource('category', CategoryController::class);
 
 Route::resource('manfisto', ManfistoController::class);
 Route::resource('account', AccountController::class);

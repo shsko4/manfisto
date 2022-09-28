@@ -70,6 +70,7 @@ class PermissionTableSeeder extends Seeder
             'تقارير جمارك',
 
             'الوحدات',
+            'تصنيفات',
 
 
         ];
