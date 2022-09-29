@@ -1,25 +1,27 @@
 <?php
 
 namespace App\Http\Livewire;
+
 use Livewire\Component;
+use Illuminate\Validation\Rule;
 use App\Models\Item as TheModel;
 use Illuminate\Support\Facades\Auth;
 
 class ManageItem extends Component
 {
     /*-------------------------------------------------------------------VARIABLES----------*/
-    public $model, $name, $model_id,$user_id,$office_id;
+    public $model, $name, $model_id, $user_id, $office_id;
     public $category_id;
     public $updateMode = false;
 
     /*-------------------------------------------------------------------LISTNERS----------*/
-    public $listeners = ['editModel', 'confirmModelDel'];
+    public $listeners = ['editModel', 'confirmModelDel', 'devicesSelect'];
 
     /*-------------------------------------------------------------------RULES----------*/
     protected function rules()
     {
         return [
-            'name' => 'required|unique:items',
+            'name' => ['required',Rule::unique('categories', 'id')->ignore($this->model_id)],
             'category_id' => 'required'
         ];
     }
@@ -66,7 +68,7 @@ class ManageItem extends Component
         $this->name = $model->name;
 
         $this->updateMode = true;
-
+        $this->dispatchBrowserEvent('DOMContentLoaded');
         $this->resetErrorBag();
     }
 
@@ -102,6 +104,7 @@ class ManageItem extends Component
         $this->reset();
         $this->resetErrorBag();
         $this->emit('refreshLivewireDatatable');
+        //$this->dispatchBrowserEvent('DOMContentLoaded');
     }
 
 
@@ -145,6 +148,7 @@ class ManageItem extends Component
     /*-------------------------------------------------------------------RENDER----------*/
     public function render()
     {
+        $this->dispatchBrowserEvent('DOMContentLoaded');
         return view('livewire.manage-item');
     }
 }

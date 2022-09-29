@@ -106,4 +106,5 @@
             $('#modalDelete').modal('hide');
         });
     </script>
+    
 @endsection
