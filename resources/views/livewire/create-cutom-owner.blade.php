@@ -1,4 +1,5 @@
 <form method="POST">
+@csrf
     <div class="alert alert-success row-sm w-auto text-center" wire:loading wire:target="setOwnerEvent">جاري التحميل.....</div>
     <div class="row">
         <div class="col">
