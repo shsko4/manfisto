@@ -43,7 +43,8 @@ class PrintCustomCertController extends Controller
         $total_bpt_amount = $custom->total_bpt_amount;
         $total_stamp_amount = $custom->total_stamp_amount;
         $total_vat_amount = $custom->total_vat_amount;
-        $pdf = PDF::loadView('pdf.document', compact('custom_certs','driver_name','car_no','total_tax_amount'));
+        $recipt_no = $custom->recipt_no;
+        $pdf = PDF::loadView('pdf.document', compact('custom_certs','driver_name','car_no','total_tax_amount','recipt_no'));
         return $pdf->stream('document'.Carbon::now().'.pdf');
     }
 

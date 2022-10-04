@@ -72,7 +72,10 @@
         <img src="data:image/png;base64, {!! base64_encode(file_get_contents(public_path('assets/img/wadi-half-logo.png'))) !!}">
 
     </div>
-    <div style="margin: 3px">التاريخ : {{ date_format(Carbon\Carbon::now(), 'Y-d-m') }}</div>
+    <div style="margin-top: 3px">التاريخ : {{ date_format(Carbon\Carbon::now(), 'Y-d-m') }}
+        <div style="padding-right: 500px; margin-bottom: 3px">رقم الإيصال : {{ $recipt_no }}</div>
+    </div>
+
     <div class='table-responsive'>
 
         <table class="table table-bordered" style="left: 10px; width:800px">

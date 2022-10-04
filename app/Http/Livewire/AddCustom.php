@@ -104,7 +104,7 @@ class AddCustom extends Component
         }
 
         $this->nolon = round($this->cert_recipt_no*100/17);
-        $this->vat = round($this->nolon*110/100*17/100-$this->cert_recipt_no);
+        $this->vat = round($this->nolon*120/100*17/100-$this->cert_recipt_no);
         $this->stamp = round($this->nolon/100);
         $this->bpt = round($this->nolon*5/100);
         $this->total = round($this->vat + $this->stamp + $this->bpt);

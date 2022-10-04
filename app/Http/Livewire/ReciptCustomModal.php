@@ -56,7 +56,7 @@ class ReciptCustomModal extends Component
         $this->acc_user_id = Auth::user()->id;
         $this->office_id = Auth::user()->office->id;
         $this->recipt_no = '';
-        $this->totalinArabic= $obj->int2str(number_format($this->total)).'  '.'جنيه فقط لاغير';
+        $this->totalinArabic= $obj->int2str(round($this->total)).'  '.'جنيه فقط لاغير';
 
         //dd($this->transporter_name);
     }

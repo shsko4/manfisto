@@ -14,10 +14,10 @@
 </head>
 
 <body class="main-body app sidebar-mini">
-    <!-- Loader-->
+    <!-- Loader
     <div id="global-loader">
-        <img src="{{ URL::asset('assets/img/loader.svg') }}" class="loader-img" alt="Loader">
-    </div>
+
+    </div>-->
     <!--Loader -->
     @include('layouts.main-sidebar')
     <!-- main-content -->
@@ -27,7 +27,6 @@
         <div class="container-fluid" style="width: auto;padding-right: 0px ;">
             @yield('page-header')
             @yield('content')
-            @include('sweetalert::alert')
             @include('layouts.sidebar')
             @include('layouts.models')
             <!-- include('layouts.footer')-->
