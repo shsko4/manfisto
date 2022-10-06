@@ -132,6 +132,8 @@
         <div style="padding-right: 500px;">
             <div style="margin-top:20px "><b style="margin-left:10px "> توقيع المفتش:</b>
             </div>
+            <div style="margin-top:5px "><b style="margin-left:10px "> {{ auth()->user()->name }}</b>
+            </div>
             <div style="margin-top:10px "><b style="margin-left:10px ">ختم المكتب  :</b>
             </div>
         </div>
