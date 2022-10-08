@@ -73,6 +73,7 @@ class PermissionTableSeeder extends Seeder
             'تصنيفات',
             'بضائع',
             'مسارات',
+            'حموله',
 
 
         ];

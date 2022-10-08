@@ -192,6 +192,10 @@
                         <li><a class="slide-item" href="{{ route('track.index') }}"> المسارات</a></li>
                         @endcan
 
+                        @can('حموله')
+                        <li><a class="slide-item" href="{{ route('load.index') }}"> الحموله</a></li>
+                        @endcan
+
                     </ul>
                 </li>
             @endcan

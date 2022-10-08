@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\LoadController;
 use App\Http\Controllers\UnitController;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Http\Controllers\AdminController;
@@ -89,6 +90,7 @@ Route::resource('unit', UnitController::class);
 Route::resource('category', CategoryController::class);
 Route::resource('item', ItemController::class);
 Route::resource('track', TrackController::class);
+Route::resource('load', LoadController::class);
 
 Route::resource('manfisto', ManfistoController::class);
 Route::resource('account', AccountController::class);

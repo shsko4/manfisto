@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('css')
 @section('title')
-المسارات
+الحموله
 @endsection
     <!-- Internal Data table css -->
     <link href="{{ URL::asset('assets/plugins/datatable/css/dataTables.bootstrap4.min.css') }}" rel="stylesheet" />
@@ -22,7 +22,7 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">المسارات</h4>
+                <h4 class="content-title mb-0 my-auto">الحموله</h4>
             </div>
         </div>
     </div>
@@ -41,7 +41,7 @@
                             {{ session('message') }}
                         </div>
                     @endif
-                    <livewire:manage-track />
+                    <livewire:manage-load/>
                 </div>
             </div>
         </div>

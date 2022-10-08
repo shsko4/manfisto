@@ -12,7 +12,7 @@
         @include('livewire.create-track')
     @endif
     <div class="mt-8" style="height: 400px; overflow: scroll">
-        <livewire:track-list-livewire searchable="name" hideable="inline"/>
+        <livewire:track-list-livewire searchable="tracks.name" hideable="inline"/>
     </div>
 
     <!-- delete -->
