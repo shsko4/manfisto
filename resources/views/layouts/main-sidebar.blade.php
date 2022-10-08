@@ -188,6 +188,10 @@
                         <li><a class="slide-item" href="{{ route('item.index') }}"> البضائع</a></li>
                         @endcan
 
+                        @can('مسارات')
+                        <li><a class="slide-item" href="{{ route('track.index') }}"> المسارات</a></li>
+                        @endcan
+
                     </ul>
                 </li>
             @endcan
