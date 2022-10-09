@@ -2,52 +2,57 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\City;
+use Carbon\Carbon;
 use Livewire\Component;
-use Illuminate\Validation\Rule;
-use App\Models\Track as TheModel;
 use Illuminate\Support\Facades\Auth;
+use App\Models\ManfistoList as TheModel;
 
-class ManageTrack extends Component
+class ManageManfistoSetup extends Component
 {
     /*-------------------------------------------------------------------VARIABLES----------*/
-    public $model, $name, $model_id, $user_id, $office_id;
-    public $from_city_id;
-    public $to_city_id;
+    public $model, $name, $model_id,$user_id,$office_id,$track_id,$load_id;
+    public $nolon = 0,$vat = 0,$bpt = 0,$bpt_agent = 0,$total = 0, $year;
     public $updateMode = false;
 
     /*-------------------------------------------------------------------LISTNERS----------*/
-    public $listeners = ['editModel', 'confirmModelDel', 'devicesSelect'];
+    public $listeners = ['editModel', 'confirmModelDel'];
 
     /*-------------------------------------------------------------------RULES----------*/
     protected function rules()
     {
         return [
-            //'name' => Rule::unique('tracks', 'id')->ignore($this->model_id),
-            'from_city_id' => 'required',
-            'to_city_id' => 'required'
+            'track_id' => 'required',
+            'load_id' => 'required',
+            'nolon' => 'required',
+            'vat' => 'required',
+            'bpt' => 'required',
+            'bpt_agent' => 'required',
+            'total' => 'required',
+            'year' => 'required',
         ];
     }
 
     /*-------------------------------------------------------------------MESSAGES----------*/
     protected $messages = [
-        //'name.unique' => ' المسار مسجل مسبقاً !',
-        'from_city_id.required' => 'يجب إختيار مدينة الإنطلاق',
-        'to_city_id.required' => 'يجب إختيار الوجهه الأخيره',
+        'track_id.required' => 'إختر المسار',
+        'load_id.required' => 'إختر الحموله',
+        'nolon.required' => 'أدخل قيمة الترحيل',
+        'vat.required' => 'أدخل القيمة المضافة',
+        'bpt.required' => 'أدخل أرباح أعمال الأليات',
+        'bpt_agent.required' => 'أدخل أرباح أعمال من عمولة الوكيل',
+        'total.required' => 'أدخل الإجمالي',
+        'total.required' => 'أدخل سنة القائمة',
     ];
 
     /*-------------------------------------------------------------------STORE----------*/
     public function store()
     {
         $validatedata = $this->validate();
-        $fromCity = City::find($this->from_city_id);
-        $toCity = City::find($this->to_city_id);
-        $this->name = $fromCity->name.'->'.$toCity->name;
         $this->user_id = Auth::user()->id;
         $this->office_id = Auth::user()->office_id;
-        $validatedata['name'] = $this->name;
         $validatedata['user_id'] = $this->user_id;
         $validatedata['office_id'] = $this->office_id;
+        $validatedata['year'] = $this->year;
         TheModel::create($validatedata);
 
         $this->dispatchBrowserEvent('swal', [
@@ -69,12 +74,16 @@ class ManageTrack extends Component
     /*-------------------------------------------------------------------EDIT----------*/
     public function editModel($id)
     {
+        //dd($id);
         $model = TheModel::findOrFail($id);
         $this->model_id = $id;
-        $this->from_city_id = $model->from_city_id;
-        $this->to_city_id = $model->to_city_id;
-        //dd($this->category_id);
-        $this->name = $model->name;
+        $this->track_id = $model->track_id;
+        $this->load_id = $model->load_id;
+        $this->nolon = round($model->nolon);
+        $this->vat = $model->vat;
+        $this->bpt = $model->bpt;
+        $this->bpt_agent = $model->bpt_agent;
+        $this->total = $model->total;
 
         $this->updateMode = true;
         $this->dispatchBrowserEvent('DOMContentLoaded');
@@ -85,10 +94,7 @@ class ManageTrack extends Component
     public function update()
     {
         $validatedDate = $this->validate();
-        $fromCity = City::find($this->from_city_id);
-        $toCity = City::find($this->to_city_id);
-        $this->name = $fromCity->name.'->'.$toCity->name;
-        $validatedDate['name'] = $this->name;
+
         $model = TheModel::find($this->model_id);
         $model->update($validatedDate);
 
@@ -115,8 +121,8 @@ class ManageTrack extends Component
     {
         $this->reset();
         $this->resetErrorBag();
+        $this->dispatchBrowserEvent('DOMContentLoaded');
         $this->emit('refreshLivewireDatatable');
-        //$this->dispatchBrowserEvent('DOMContentLoaded');
     }
 
 
@@ -155,11 +161,28 @@ class ManageTrack extends Component
     {
         $this->updateMode = false;
         $this->resetInputFields();
-        
+
     }
 
+    /*-------------------------------------------------------------------RENDER----------*/
     public function render()
     {
-        return view('livewire.manage-track');
+        if (!is_numeric($this->nolon)) {
+            $this->nolon = 0;
+
+        }
+
+        if ($this->nolon < 0) {
+            $this->nolon = 0;
+
+        }
+
+        $this->vat = round($this->nolon*17/100);
+        $this->bpt = round($this->nolon/100);
+        $this->bpt_agent = round($this->nolon/100);
+        $this->bpt = round($this->nolon*5/100);
+        $this->total = round($this->vat + $this->bpt + $this->bpt_agent);
+        $this->year = date_format(Carbon::now(), 'Y');
+        return view('livewire.manage-manfisto-setup');
     }
 }

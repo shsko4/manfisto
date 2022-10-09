@@ -2,17 +2,24 @@
 
 namespace App\Models;
 
-use App\Models\User;
-use App\Models\Office;
+use App\Models\Item;
+use App\Models\Unit;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Unit extends Model
+class GoodList extends Model
 {
-    use HasFactory , SoftDeletes;
+    use HasFactory, SoftDeletes;
     protected $fillable = [
-        'name',
+        'item_id',
+        'unit_id',
+        'vat',
+        'bpt',
+        'final_tax',
+        'prod_tax',
+        'total',
+        'year',
         'user_id',
         'office_id',
     ];
@@ -27,8 +34,13 @@ class Unit extends Model
         return $this->belongsTo(Office::class);
     }
 
-    public function goodlist()
+    public function item()
     {
-        return $this->hasMany(GoodList::class);
+        return $this->belongsTo(Item::class);
+    }
+
+    public function unit()
+    {
+        return $this->belongsTo(Unit::class);
     }
 }

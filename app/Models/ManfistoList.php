@@ -2,17 +2,24 @@
 
 namespace App\Models;
 
-use App\Models\User;
-use App\Models\Office;
+use App\Models\Load;
+use App\Models\Track;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Unit extends Model
+class ManfistoList extends Model
 {
     use HasFactory , SoftDeletes;
     protected $fillable = [
-        'name',
+        'track_id',
+        'load_id',
+        'nolon',
+        'vat',
+        'bpt',
+        'bpt_agent',
+        'total',
+        'year',
         'user_id',
         'office_id',
     ];
@@ -27,8 +34,13 @@ class Unit extends Model
         return $this->belongsTo(Office::class);
     }
 
-    public function goodlist()
+    public function track()
     {
-        return $this->hasMany(GoodList::class);
+        return $this->belongsTo(Track::class);
+    }
+
+    public function theload()
+    {
+        return $this->belongsTo(Load::class);
     }
 }

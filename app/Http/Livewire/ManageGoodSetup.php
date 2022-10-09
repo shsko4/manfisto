@@ -2,53 +2,57 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\City;
+use Carbon\Carbon;
 use Livewire\Component;
-use Illuminate\Validation\Rule;
-use App\Models\Track as TheModel;
 use Illuminate\Support\Facades\Auth;
+use App\Models\GoodList as TheModel;
 
-class ManageTrack extends Component
+class ManageGoodSetup extends Component
 {
     /*-------------------------------------------------------------------VARIABLES----------*/
-    public $model, $name, $model_id, $user_id, $office_id;
-    public $from_city_id;
-    public $to_city_id;
+    public $model, $name, $model_id,$user_id,$office_id,$item_id  , $vat = 0,$bpt = 0,$final_tax = 0,$prod_tax = 0,$total = 0, $year;
     public $updateMode = false;
+    public $unit_id;
 
     /*-------------------------------------------------------------------LISTNERS----------*/
-    public $listeners = ['editModel', 'confirmModelDel', 'devicesSelect'];
+    public $listeners = ['editModel', 'confirmModelDel'];
 
     /*-------------------------------------------------------------------RULES----------*/
     protected function rules()
     {
         return [
-            //'name' => Rule::unique('tracks', 'id')->ignore($this->model_id),
-            'from_city_id' => 'required',
-            'to_city_id' => 'required'
+            'item_id' => 'required',
         ];
     }
 
     /*-------------------------------------------------------------------MESSAGES----------*/
     protected $messages = [
-        //'name.unique' => ' المسار مسجل مسبقاً !',
-        'from_city_id.required' => 'يجب إختيار مدينة الإنطلاق',
-        'to_city_id.required' => 'يجب إختيار الوجهه الأخيره',
+        'item_id.required' => 'إختر المنتج أوالبضاعة'
+       /* 'unit_id.required' => 'إختر الوحدة',
+        'year.required' => 'أدخل سنة القائمة'*/
     ];
 
     /*-------------------------------------------------------------------STORE----------*/
     public function store()
     {
+        //dump('f1');
         $validatedata = $this->validate();
-        $fromCity = City::find($this->from_city_id);
-        $toCity = City::find($this->to_city_id);
-        $this->name = $fromCity->name.'->'.$toCity->name;
+        //d('f2');
         $this->user_id = Auth::user()->id;
         $this->office_id = Auth::user()->office_id;
-        $validatedata['name'] = $this->name;
+        $validatedata['item_id'] = 1;
+        $validatedata['unit_id'] = $this->unit_id;
+        $validatedata['vat'] = $this->vat;
+        $validatedata['bpt'] = $this->bpt;
+        $validatedata['final_tax'] = $this->final_tax;
+        $validatedata['prod_tax'] = $this->prod_tax;
+        $validatedata['total'] = $this->total;
         $validatedata['user_id'] = $this->user_id;
         $validatedata['office_id'] = $this->office_id;
+        $validatedata['year'] = $this->year;
+        //dd('f');
         TheModel::create($validatedata);
+
 
         $this->dispatchBrowserEvent('swal', [
             'title' => 'تم حفظ السجل بنجاح',
@@ -69,12 +73,16 @@ class ManageTrack extends Component
     /*-------------------------------------------------------------------EDIT----------*/
     public function editModel($id)
     {
+        //dd($id);
         $model = TheModel::findOrFail($id);
         $this->model_id = $id;
-        $this->from_city_id = $model->from_city_id;
-        $this->to_city_id = $model->to_city_id;
-        //dd($this->category_id);
-        $this->name = $model->name;
+        $this->item_id = $model->item_id;
+        $this->unit_id = $model->unit_id;
+        $this->vat = $model->vat;
+        $this->bpt = $model->bpt;
+        $this->final_tax = $model->final_tax;
+        $this->prod_tax = $model->prod_tax;
+        $this->total = $model->total;
 
         $this->updateMode = true;
         $this->dispatchBrowserEvent('DOMContentLoaded');
@@ -84,13 +92,16 @@ class ManageTrack extends Component
     /*-------------------------------------------------------------------UPDATE----------*/
     public function update()
     {
-        $validatedDate = $this->validate();
-        $fromCity = City::find($this->from_city_id);
-        $toCity = City::find($this->to_city_id);
-        $this->name = $fromCity->name.'->'.$toCity->name;
-        $validatedDate['name'] = $this->name;
+
+        $validatedata = $this->validate();
+        $validatedata['unit_id'] = $this->unit_id;
+        $validatedata['vat'] = $this->vat;
+        $validatedata['bpt'] = $this->bpt;
+        $validatedata['final_tax'] = $this->final_tax;
+        $validatedata['prod_tax'] = $this->prod_tax;
+        $validatedata['total'] = $this->total;
         $model = TheModel::find($this->model_id);
-        $model->update($validatedDate);
+        $model->update($validatedata);
 
 
         $this->updateMode = false;
@@ -115,8 +126,8 @@ class ManageTrack extends Component
     {
         $this->reset();
         $this->resetErrorBag();
+        $this->dispatchBrowserEvent('DOMContentLoaded');
         $this->emit('refreshLivewireDatatable');
-        //$this->dispatchBrowserEvent('DOMContentLoaded');
     }
 
 
@@ -155,11 +166,51 @@ class ManageTrack extends Component
     {
         $this->updateMode = false;
         $this->resetInputFields();
-        
+
     }
 
+    /*-------------------------------------------------------------------RENDER----------*/
     public function render()
     {
-        return view('livewire.manage-track');
+        if (!is_numeric($this->vat)) {
+            $this->vat = 0;
+
+        }
+
+        if ($this->vat < 0) {
+            $this->vat = 0;
+
+        }
+        if (!is_numeric($this->bpt)) {
+            $this->bpt = 0;
+
+        }
+
+        if ($this->bpt < 0) {
+            $this->bpt = 0;
+
+        }
+
+        if (!is_numeric($this->final_tax)) {
+            $this->final_tax = 0;
+
+        }
+
+        if ($this->final_tax < 0) {
+            $this->final_tax = 0;
+
+        }
+        if (!is_numeric($this->prod_tax)) {
+            $this->prod_tax = 0;
+
+        }
+
+        if ($this->prod_tax < 0) {
+            $this->prod_tax = 0;
+
+        }
+        $this->year = date_format(Carbon::now(), 'Y');
+        $this->total = round($this->vat + $this->bpt + $this->final_tax + $this->prod_tax);
+        return view('livewire.manage-good-setup');
     }
 }
