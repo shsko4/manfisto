@@ -62,6 +62,10 @@
                             <li><a class="slide-item" href="{{ route('custom.index') }}"> شهادات جمركية</a></li>
                         @endcan
 
+                        @can('بورصه')
+                            <li><a class="slide-item" href="{{ route('stockrecipt.index') }}">مسير بورصه</a></li>
+                        @endcan
+
 
                     </ul>
                 </li>

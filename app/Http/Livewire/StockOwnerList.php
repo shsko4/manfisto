@@ -2,18 +2,18 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\StockRecipt;
 use Livewire\Component;
-use App\Models\GoodList;
 use Mediconesystems\LivewireDatatables\Column;
 use Mediconesystems\LivewireDatatables\Http\Livewire\LivewireDatatable;
 
-class GoodSetupList extends LivewireDatatable
+class StockOwnerList extends  LivewireDatatable
 {
     public function builder()
     {
-        $model = GoodList::query()
-        ->leftJoin('items', 'items.id', 'good_lists.item_id')
-        ->leftJoin('units', 'units.id', 'good_lists.unit_id');
+        $model = StockRecipt::query()
+        ->leftJoin('tracks', 'tracks.id', 'stock_recipts.track_id')
+        ->leftJoin('loads', 'loads.id', 'stock_recipts.load_id');
 
         return $model;
     }
@@ -22,57 +22,49 @@ class GoodSetupList extends LivewireDatatable
     {
         return [
 
-            Column::name('items.name')
-                ->label('المنتج/البضاعة')
+            Column::name('tracks.name')
+                ->label('المسار')
+                ->contentAlignCenter()
+                ->headerAlignCenter()
+                ->width(200)
+                ->exportCallback(function ($value) {
+                    return (string) $value;
+                }),
+            Column::name('loads.name')
+                ->label('الحمولة')
+                ->contentAlignCenter()
+                ->headerAlignCenter()
+                ->width(200)
+                ->exportCallback(function ($value) {
+                    return (string) $value;
+                }),
+            Column::name('stock_recipts.borker_name')
+                ->label('المخلص')
                 ->contentAlignCenter()
                 ->headerAlignCenter()
                 ->width(150)
                 ->exportCallback(function ($value) {
                     return (string) $value;
                 }),
-            Column::name('units.name')
-                ->label('الوحده')
+            Column::name('stock_recipts.driver_name')
+                ->label('السائق')
                 ->contentAlignCenter()
                 ->headerAlignCenter()
                 ->width(150)
                 ->exportCallback(function ($value) {
                     return (string) $value;
                 }),
-            Column::name('good_lists.vat')
-                ->label('قيمة مضافة')
+            Column::name('stock_recipts.car_no')
+                ->label('العربة')
                 ->contentAlignCenter()
                 ->headerAlignCenter()
                 ->width(150)
-                ->exportCallback(function ($value) {
-                    return (string) $value;
-                }),
-            Column::name('good_lists.bpt')
-                ->label('أ.ع')
-                ->contentAlignCenter()
-                ->headerAlignCenter()
-                ->width(150)
-                ->exportCallback(function ($value) {
-                    return (string) $value;
-                }),
-            Column::name('good_lists.final_tax')
-                ->label('ضريبة نهائية')
-                ->contentAlignCenter()
-                ->headerAlignCenter()
-                ->width(100)
-                ->exportCallback(function ($value) {
-                    return (string) $value;
-                }),
-            Column::name('good_lists.prod_tax')
-                ->label('إنتاج زراعي')
-                ->contentAlignCenter()
-                ->headerAlignCenter()
-                ->width(100)
                 ->exportCallback(function ($value) {
                     return (string) $value;
                 }),
             Column::callback(['id'], function ($id) {
 
-                $goodlist = GoodList::find($id);
+                $manfistoList = StockRecipt::find($id);
 
                 return "<button wire:click='theEdit($id)'
                                 class='btn btn-sm btn-info'><i class='las la-pen'></i></button>
@@ -82,7 +74,7 @@ class GoodSetupList extends LivewireDatatable
             })
                 ->label('العمليات')
                 ->contentAlignCenter()
-                ->width(200),
+                ->width(100),
         ];
     }
 

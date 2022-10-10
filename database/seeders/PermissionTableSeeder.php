@@ -76,6 +76,8 @@ class PermissionTableSeeder extends Seeder
             'حموله',
             'لوائح',
 
+            'بورصه',
+
 
         ];
         foreach ($permissions as $permission) {

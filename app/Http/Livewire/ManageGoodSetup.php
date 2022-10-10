@@ -46,7 +46,7 @@ class ManageGoodSetup extends Component
         $validatedata['bpt'] = $this->bpt;
         $validatedata['final_tax'] = $this->final_tax;
         $validatedata['prod_tax'] = $this->prod_tax;
-        $validatedata['total'] = $this->total;
+        //$validatedata['total'] = $this->total;
         $validatedata['user_id'] = $this->user_id;
         $validatedata['office_id'] = $this->office_id;
         $validatedata['year'] = $this->year;
@@ -82,7 +82,7 @@ class ManageGoodSetup extends Component
         $this->bpt = $model->bpt;
         $this->final_tax = $model->final_tax;
         $this->prod_tax = $model->prod_tax;
-        $this->total = $model->total;
+       //$this->total = $model->total;
 
         $this->updateMode = true;
         $this->dispatchBrowserEvent('DOMContentLoaded');
@@ -99,7 +99,7 @@ class ManageGoodSetup extends Component
         $validatedata['bpt'] = $this->bpt;
         $validatedata['final_tax'] = $this->final_tax;
         $validatedata['prod_tax'] = $this->prod_tax;
-        $validatedata['total'] = $this->total;
+        //$validatedata['total'] = $this->total;
         $model = TheModel::find($this->model_id);
         $model->update($validatedata);
 

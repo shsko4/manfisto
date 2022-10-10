@@ -184,7 +184,7 @@ class CreateUserSeeder extends Seeder
         //$permissions_accountant2 = Permission::where('name', 'تقارير الحسابات')->get();
         $inspector_perm = ['الاعدادات','العمليات','التقارير','تقارير المخالفات','تقارير المنفستو','المنفستو','المخالفات','المرحلين','اضافة مرحل',
         'حذف مرحل','تعديل مرحل','اضافة منفستو','عرض منفستو','حذف منفستو','تعديل منفستو','اضافة مخالفة','حذف مخالفة','تعديل مخالفة',
-        'تسجيل مخالف','نوع مخالفة','المحليات','المدن'];
+        'تسجيل مخالف','نوع مخالفة','المحليات','المدن','بورصه'];
         $permissions_ins1 = Permission::whereIn('name', $inspector_perm)->get();
         $role->syncPermissions($permissions);
         $role_accountant->syncPermissions($permissions_accountant);

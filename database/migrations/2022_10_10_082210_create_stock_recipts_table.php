@@ -13,16 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('good_lists', function (Blueprint $table) {
+        Schema::create('stock_recipts', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('item_id');
-            $table->unsignedBigInteger('unit_id');
-            $table->decimal('vat',10,2);
-            $table->decimal('bpt',10,2);
-            $table->decimal('final_tax',10,2);
-            $table->decimal('prod_tax',10,2);
-            //$table->decimal('total',10,2);
-            $table->string('year');
+            $table->unsignedBigInteger('track_id')->nullable();
+            $table->unsignedBigInteger('load_id')->nullable();
+            $table->string('broker_name');
+            $table->string('driver_name');
+            $table->string('car_no');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('office_id');
             $table->softDeletes();
@@ -37,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('good_lists');
+        Schema::dropIfExists('stock_recipts');
     }
 };

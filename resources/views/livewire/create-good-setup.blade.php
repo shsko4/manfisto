@@ -69,7 +69,7 @@
          <!-------------->
          <div class="col-span-7 mr-2">
             <label for="bpt" class="tx-17"> أرباح أعمال  <span class="tx-danger">*</span></label>
-            <div style="color: #40c717" class="la-ball-spin-fade la-sm" wire:loading wire:target="bpt">
+            <div style="color: #40c717" class="la-ball-spin-fade la-sm" wire:loading wire:target="bpt" >
                 <div></div>
                 <div></div>
                 <div></div>
@@ -138,17 +138,17 @@
         <!-------------->
 
         <!-------------->
-        <div class="col-span-7 mr-2 ">
+       <!-- <div class="col-span-7 mr-2 ">
             <label for="total" class="tx-17 ">الإجمالي <span class="tx-danger">*</span></label>
             <input type="number" required class="form-control" placeholder="" wire:model="total"
                 id='total' name='total' readonly>
 
-            @error('total')
+            error('total')
                 <div>
-                    <span class="text-danger mt-2">{{ $message }}</span>
+                    <span class="text-danger mt-2"> message </span>
                 </div>
-            @enderror
-        </div>
+            enderror
+        </div>-->
         <!-------------->
     </div>
 

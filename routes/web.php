@@ -22,6 +22,7 @@ use App\Http\Controllers\LocalityController;
 use App\Http\Controllers\ManfistoController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\PenaltyTypeController;
+use App\Http\Controllers\StockReciptController;
 use App\Http\Controllers\TransporterController;
 use App\Http\Controllers\CustomReportController;
 use App\Http\Controllers\ManfistoListController;
@@ -95,6 +96,7 @@ Route::resource('track', TrackController::class);
 Route::resource('load', LoadController::class);
 Route::resource('setupmanfisto', ManfistoListController::class);
 Route::resource('setupgood', GoodListController::class);
+Route::resource('stockrecipt', StockReciptController::class);
 
 Route::resource('manfisto', ManfistoController::class);
 Route::resource('account', AccountController::class);
