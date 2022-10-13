@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('track_id')->nullable();
             $table->unsignedBigInteger('load_id')->nullable();
-            $table->string('broker_name');
+            $table->string('broker_name')->nullable();
             $table->string('driver_name');
             $table->string('car_no');
             $table->unsignedBigInteger('user_id');

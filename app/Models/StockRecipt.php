@@ -16,7 +16,7 @@ class StockRecipt extends Model
     protected $fillable = [
         'track_id',
         'load_id',
-        'boker_name',
+        'broker_name',
         'driver_name',
         'car_no',
         'user_id',

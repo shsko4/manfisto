@@ -12,8 +12,8 @@ class StockOwnerList extends  LivewireDatatable
     public function builder()
     {
         $model = StockRecipt::query()
-        ->leftJoin('tracks', 'tracks.id', 'stock_recipts.track_id')
-        ->leftJoin('loads', 'loads.id', 'stock_recipts.load_id');
+            ->leftJoin('tracks', 'tracks.id', 'stock_recipts.track_id')
+            ->leftJoin('loads', 'loads.id', 'stock_recipts.load_id');
 
         return $model;
     }
@@ -21,6 +21,22 @@ class StockOwnerList extends  LivewireDatatable
     public function columns()
     {
         return [
+            Column::name('stock_recipts.car_no')
+                ->label('العربة')
+                ->contentAlignCenter()
+                ->headerAlignCenter()
+                ->width(150)
+                ->exportCallback(function ($value) {
+                    return (string) $value;
+                }),
+            Column::name('stock_recipts.driver_name')
+                ->label('السائق')
+                ->contentAlignCenter()
+                ->headerAlignCenter()
+                ->width(150)
+                ->exportCallback(function ($value) {
+                    return (string) $value;
+                }),
 
             Column::name('tracks.name')
                 ->label('المسار')
@@ -38,30 +54,6 @@ class StockOwnerList extends  LivewireDatatable
                 ->exportCallback(function ($value) {
                     return (string) $value;
                 }),
-            Column::name('stock_recipts.borker_name')
-                ->label('المخلص')
-                ->contentAlignCenter()
-                ->headerAlignCenter()
-                ->width(150)
-                ->exportCallback(function ($value) {
-                    return (string) $value;
-                }),
-            Column::name('stock_recipts.driver_name')
-                ->label('السائق')
-                ->contentAlignCenter()
-                ->headerAlignCenter()
-                ->width(150)
-                ->exportCallback(function ($value) {
-                    return (string) $value;
-                }),
-            Column::name('stock_recipts.car_no')
-                ->label('العربة')
-                ->contentAlignCenter()
-                ->headerAlignCenter()
-                ->width(150)
-                ->exportCallback(function ($value) {
-                    return (string) $value;
-                }),
             Column::callback(['id'], function ($id) {
 
                 $manfistoList = StockRecipt::find($id);
@@ -74,7 +66,7 @@ class StockOwnerList extends  LivewireDatatable
             })
                 ->label('العمليات')
                 ->contentAlignCenter()
-                ->width(100),
+                ->width(500),
         ];
     }
 

@@ -1,10 +1,19 @@
 <div>
 
-    @if (session()->has('message'))
-        <div class="alert alert-success">
-            {{ session('message') }}
-        </div>
-    @endif
+    <div>
+        @if ($errors->any())
+                        <div id="err_div" class="content-start">
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+
+                    @endif
+    </div>
     <div  class="row" style="width: 1500px">
         @if ($updateMode)
             @include('livewire.update-stock-owner')
@@ -59,12 +68,13 @@
                     //alert();
                     var data = $('#track_id').select2("val");
                     @this.set('track_id', data);
+                    @this.set('shownolon', 'hidden');
                 });
 
             });
         });
 
-        document.addEventListener("DOMContentLoaded", () => {
+        /*document.addEventListener("DOMContentLoaded", () => {
             $('#load_id').select2({
                 placeholder: "إختر الحمولة",
                 allowClear: true,
@@ -86,6 +96,6 @@
                 });
 
             });
-        });
+        });*/
     </script>
 </div>

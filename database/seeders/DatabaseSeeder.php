@@ -36,5 +36,10 @@ class DatabaseSeeder extends Seeder
 
 
 
+        $this->call(TracksTableSeeder::class);
+        $this->call(CategoriesTableSeeder::class);
+        $this->call(LoadsTableSeeder::class);
+        $this->call(ItemsTableSeeder::class);
+        $this->call(ManfistoListsTableSeeder::class);
     }
 }
