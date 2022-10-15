@@ -10,7 +10,7 @@ use App\Models\StockRecipt as TheModel;
 class StockReciptOwner extends Component
 {
     /*-------------------------------------------------------------------VARIABLES----------*/
-    public $model, $name, $model_id, $user_id, $office_id, $track_id, $load_id, $broker_name, $driver_name, $car_no;
+    public $model, $name, $model_id, $user_id, $office_id, $track_id, $load_id,$man_no, $broker_name, $driver_name, $car_no;
     public $updateMode = false;
     public $manfisto_total = 0;
     public $shownolon = 'hidden';
@@ -27,6 +27,7 @@ class StockReciptOwner extends Component
             'track_id' => 'nullable',
             'load_id' => 'required_with:track_id',
             'broker_name' => 'nullable',
+            'man_no' => 'nullable',
             'driver_name' => 'required',
             'car_no' => 'required',
         ];
@@ -89,6 +90,7 @@ class StockReciptOwner extends Component
         $this->load_id = $model->load_id;
         $this->driver_name = $model->driver_name;
         $this->car_no = $model->car_no;
+        $this->man_no = $model->man_no;
         $this->broker_name = $model->broker_name;
 
         $this->updateMode = true;

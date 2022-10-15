@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\User;
 use App\Models\Office;
+use App\Models\ManfistoList;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -25,5 +26,9 @@ class Load extends Model
     public function office()
     {
         return $this->belongsTo(Office::class);
+    }
+    public function manfistolist()
+    {
+        return $this->hasMany(ManfistoList::class);
     }
 }

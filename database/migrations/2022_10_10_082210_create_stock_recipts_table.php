@@ -19,6 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('load_id')->nullable();
             $table->string('broker_name')->nullable();
             $table->string('driver_name');
+            $table->string('man_no');
             $table->string('car_no');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('office_id');

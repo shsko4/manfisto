@@ -17,6 +17,7 @@ class StockRecipt extends Model
         'track_id',
         'load_id',
         'broker_name',
+        'man_no',
         'driver_name',
         'car_no',
         'user_id',
@@ -38,6 +39,6 @@ class StockRecipt extends Model
     }
     public function theload()
     {
-        return $this->belongsTo(Load::class);
+        return $this->belongsTo(Load::class,'load_id');
     }
 }
