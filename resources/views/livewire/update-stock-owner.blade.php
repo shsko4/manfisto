@@ -1,4 +1,4 @@
-<form wire:submit.prevent="update()">
+<form wire:submit.prevent="update()" style="width: 800px">
     <div class="row text-center">
         <!--------------------------------------------------------------------SELECT2-------------------->
         <div class="col-lg-4 mg-t-20 mg-lg-t-0" wire:ignore>
@@ -21,22 +21,29 @@
         <!--------------------------------------------------------------------SELECT2 END-------------------->
         <!--------------------------------------------------------------------SELECT2-------------------->
         <div class="col-lg-4 mg-t-20 mg-lg-t-0" >
-            <label for="load_id" class="tx-17">الحموله<span class="tx-danger">*</span></label>
+            <label for="load_id" class="tx-17" :errors="$errors">الحموله<span class="tx-danger">*</span></label>
             <select name="load_id" id="load_id" class="form-control" wire:model='load_id'>
                 <option label="إختر الحمولة">
                 </option>
                 @foreach (App\Models\ManfistoList::where('track_id',$track_id)->get() as $man_list)
-                    <option value="{{  $man_list->load_id }}" {{ $load_id == $man_list->load_id ? 'selected' : '' }}>
-                        {{ $man_list->load_id }}
+                    <option value="{{ $man_list->load_id }}" {{ $load_id == $man_list->load_id ? 'selected' : '' }}>
+                        <?php
+                        $theload1 = App\Models\Load::find($man_list->load_id);
+                        ?>
+                        {{ $theload1->name }}
                     </option>
                 @endforeach
             </select>
             <div>
-                @error('load_id')
+                @if (isset($message))
                     <span class="text-danger mt-2">{{ $message }}</span>
-                @enderror
+                @endif
+
+
             </div>
         </div>
+
+
         <!--------------------------------------------------------------------SELECT2 END-------------------->
         <!-------------->
         <div class="col-md-3">
@@ -69,7 +76,7 @@
             @enderror
         </div>
         <!-------------->
-        <div class="col-lg-4 mg-t-20 mg-lg-t-0">
+        <div class="col" style="padding: 0%; margin-right: 10px; width: 100px; align-content: center;">
 
             <label for="car_no" class="tx-17">رقم العربة</label>
 
@@ -83,6 +90,52 @@
             @enderror
         </div>
 
+        <!-------------->
+         <!-------------->
+        <div class="col" style="padding: 0%; margin-right: 10px; width: 100px; align-content: center;">
+
+            <label for="man_no" class="tx-17">رقم المنفستو</label>
+
+            <input type="text" required class="form-control" wire:model="man_no" id='man_no' name='man_no'>
+
+            @error('man_no')
+                <div>
+                    <span class="text-danger mt-2">{{ $message }}</span>
+                </div>
+            @enderror
+        </div>
+        <!-------------->
+        <div class="col-lg-4 mg-t-20 mg-lg-t-0" style="visibility: {{ $shownolon }}; width: 100px">
+
+            <label for="manfisto_total" class="tx-17">إجمالي المنفستو</label>
+
+            <input type="text" required class="form-control" wire:model="manfisto_total" id='manfisto_total'
+             name='manfisto_total' readonly>
+
+
+            @error('manfisto_total')
+                <div>
+                    <span class="text-danger mt-2">{{ $message }}</span>
+                </div>
+            @enderror
+        </div>
+        <!-------------->
+
+        <!-------------->
+        <div class="col-md-3" style="visibility: {{ $showmandiff }}; width: 100px">
+
+            <label for="manfisto_diff" class="tx-17">فرق منفستو</label>
+
+            <input type="number" required class="form-control" wire:model="manfisto_diff" id='manfisto_diff'
+             name='manfisto_diff'>
+
+
+            @error('manfisto_diff')
+                <div>
+                    <span class="text-danger mt-2">{{ $message }}</span>
+                </div>
+            @enderror
+        </div>
         <!-------------->
     </div>
     <div class="row mt-3">

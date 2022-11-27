@@ -119,7 +119,7 @@
 </div>
 <!-- delete -->
 <!-- Modal effects -->
-<div class="modal" id="modaldemo8">
+<div class="modal" id="modalDelete">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content modal-content-demo">
             <div class="modal-header">

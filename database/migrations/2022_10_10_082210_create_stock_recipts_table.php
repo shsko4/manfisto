@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('driver_name');
             $table->string('man_no');
             $table->string('car_no');
+            $table->decimal('manfisto_total',10,2)->default(0);
+            $table->decimal('manfisto_diff',10,2)->default(0);
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('office_id');
             $table->softDeletes();

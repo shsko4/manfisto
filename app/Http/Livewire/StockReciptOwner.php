@@ -10,10 +10,11 @@ use App\Models\StockRecipt as TheModel;
 class StockReciptOwner extends Component
 {
     /*-------------------------------------------------------------------VARIABLES----------*/
-    public $model, $name, $model_id, $user_id, $office_id, $track_id, $load_id,$man_no, $broker_name, $driver_name, $car_no;
+    public $model, $name, $model_id, $user_id, $office_id, $track_id, $load_id,$man_no, $broker_name, $driver_name, $car_no,$manfisto_diff = 0;
     public $updateMode = false;
     public $manfisto_total = 0;
     public $shownolon = 'hidden';
+    public $showmandiff = 'visiable';
     // public $model_owner = false;
     public $ownerobj;
 
@@ -28,6 +29,8 @@ class StockReciptOwner extends Component
             'load_id' => 'required_with:track_id',
             'broker_name' => 'nullable',
             'man_no' => 'nullable',
+            'manfisto_total' => 'nullable',
+            'manfisto_diff' => 'nullable',
             'driver_name' => 'required',
             'car_no' => 'required',
         ];
@@ -61,6 +64,11 @@ class StockReciptOwner extends Component
          //dd('f');*/
         $validatedata['user_id'] = $this->user_id;
         $validatedata['office_id'] = $this->office_id;
+
+        if($validatedata['track_id'] == ''){
+            $validatedata['track_id'] = null;
+        }
+       // dd($validatedata['track_id']);
         TheModel::create($validatedata);
 
 
@@ -93,6 +101,16 @@ class StockReciptOwner extends Component
         $this->man_no = $model->man_no;
         $this->broker_name = $model->broker_name;
 
+        if($model->manfisto_total != 0){
+            $this->shownolon = 'visiable';
+            $this->manfisto_total = $model->manfisto_total;
+        }
+
+        if($model->manfisto_diff != 0){
+            $this->showmandiff = 'visiable';
+            $this->manfisto_diff = $model->manfisto_diff;
+        }
+
         $this->updateMode = true;
         $this->dispatchBrowserEvent('DOMContentLoaded');
         $this->resetErrorBag();
@@ -103,6 +121,7 @@ class StockReciptOwner extends Component
     {
 
         $validatedata = $this->validate();
+        //dd($validatedata['track_id']);
         $model = TheModel::find($this->model_id);
         $model->update($validatedata);
 
@@ -174,7 +193,8 @@ class StockReciptOwner extends Component
     {
         if ($this->track_id != null && $this->load_id != null) {
 
-            $this->shownolon = 'visiable';
+            $this->shownolon = 'showmandiff';
+            $this->showmandiff = 'hidden';
             $sockobj = ManfistoList::where('track_id', $this->track_id)->where('load_id', $this->load_id)->first();
             if($sockobj){
                 $this->manfisto_total = round($sockobj->total);
@@ -182,12 +202,15 @@ class StockReciptOwner extends Component
             }else{
                 $this->manfisto_total = 0;
                 $this->shownolon = 'hidden';
+                $this->showmandiff = 'showmandiff';
             }
 
         }else{
             $this->shownolon = 'hidden';
+            $this->showmandiff = 'showmandiff';
             $this->manfisto_total = 0;
         }
+        $this->dispatchBrowserEvent('DOMContentLoaded');
         return view('livewire.stock-recipt-owner');
     }
 }

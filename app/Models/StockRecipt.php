@@ -20,6 +20,8 @@ class StockRecipt extends Model
         'man_no',
         'driver_name',
         'car_no',
+        'manfisto_total',
+        'manfisto_diff',
         'user_id',
         'office_id',
     ];

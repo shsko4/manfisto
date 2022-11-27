@@ -1,4 +1,4 @@
-<form wire:submit.prevent="store()">
+<form wire:submit.prevent="store()" style="width: 800px">
 
     <div class="row text-center">
 
@@ -60,6 +60,7 @@
             @enderror
         </div>
         <!-------------->
+
     </div>
     <div class="row mt-2  text-center">
         <!-------------->
@@ -96,8 +97,7 @@
 
             <label for="man_no" class="tx-17">رقم المنفستو</label>
 
-            <input type="text" required class="form-control" wire:model="man_no" id='man_no' name='man_no'
-                required >
+            <input type="text" required class="form-control" wire:model="man_no" id='man_no' name='man_no'>
 
             @error('man_no')
                 <div>
@@ -106,7 +106,7 @@
             @enderror
         </div>
         <!-------------->
-        <div class="col-lg-4 mg-t-20 mg-lg-t-0" style="visibility: {{ $shownolon }}">
+        <div class="col-lg-4 mg-t-20 mg-lg-t-0" style="visibility: {{ $shownolon }}; width: 100px">
 
             <label for="manfisto_total" class="tx-17">إجمالي المنفستو</label>
 
@@ -115,6 +115,23 @@
 
 
             @error('manfisto_total')
+                <div>
+                    <span class="text-danger mt-2">{{ $message }}</span>
+                </div>
+            @enderror
+        </div>
+        <!-------------->
+
+        <!-------------->
+        <div class="col-md-3" style="visibility: {{ $showmandiff }}; width: 100px">
+
+            <label for="manfisto_diff" class="tx-17">فرق منفستو</label>
+
+            <input type="number" required class="form-control" wire:model="manfisto_diff" id='manfisto_diff'
+             name='manfisto_diff'>
+
+
+            @error('manfisto_diff')
                 <div>
                     <span class="text-danger mt-2">{{ $message }}</span>
                 </div>
