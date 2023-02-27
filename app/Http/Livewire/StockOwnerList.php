@@ -58,7 +58,8 @@ class StockOwnerList extends  LivewireDatatable
 
                 $manfistoList = StockRecipt::find($id);
 
-                return "<button wire:click='theEdit($id)'
+                return "<a href='#' wire:click='setOwner($id)' class='btn btn-sm btn-success' title='تسجيل بضائع'><i class='las la-file-invoice'></i></a>
+                <button wire:click='theEdit($id)'
                                 class='btn btn-sm btn-info'><i class='las la-pen'></i></button>
                             <a href='#' class='modal-effect btn btn-sm btn-danger'
                                 wire:click='theDelete($id)'
@@ -66,7 +67,7 @@ class StockOwnerList extends  LivewireDatatable
             })
                 ->label('العمليات')
                 ->contentAlignCenter()
-                ->width(500),
+                ->width(200),
         ];
     }
 
@@ -79,5 +80,10 @@ class StockOwnerList extends  LivewireDatatable
     public function theDelete($id)
     {
         $this->emit('confirmModelDel', $id);
+    }
+
+    public function setOwner($id)
+    {
+        $this->emit('setOwner', $id);
     }
 }

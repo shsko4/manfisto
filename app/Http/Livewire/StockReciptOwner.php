@@ -19,7 +19,7 @@ class StockReciptOwner extends Component
     public $ownerobj;
 
     /*-------------------------------------------------------------------LISTNERS----------*/
-    public $listeners = ['editModel', 'confirmModelDel'];
+    public $listeners = ['editModel', 'confirmModelDel','setOwner'];
 
     /*-------------------------------------------------------------------RULES----------*/
     protected function rules()
@@ -35,7 +35,6 @@ class StockReciptOwner extends Component
             'car_no' => 'required',
         ];
     }
-
     /*-------------------------------------------------------------------MESSAGES----------*/
     protected $messages = [
 
@@ -45,6 +44,9 @@ class StockReciptOwner extends Component
     ];
 
     /*-------------------------------------------------------------------STORE----------*/
+    public function setOwner($id = null){
+        dd('ddd');
+    }
     public function store()
     {
         //dump('f1');
