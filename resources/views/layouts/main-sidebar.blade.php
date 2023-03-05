@@ -22,7 +22,9 @@
                         class="avatar-status profile-status bg-green"></span>
                 </div>-->
                 <div class="user-info text-green-600">
-                    <a href="{{ route('index_password') }}" title="نعديل كلمة المرور"><h6 class="font-weight-semibold mt-3 mb-0  ">{{ Auth::user()->name }}</h6></a>
+                    <a href="{{ route('index_password') }}" title="نعديل كلمة المرور">
+                        <h6 class="font-weight-semibold mt-3 mb-0  ">{{ Auth::user()->name }}</h6>
+                    </a>
                     <h6 class="font-weight-semibold mt-3 mb-0">{{ Auth::user()->office->name }}</h6>
                     <span class="mb-0 text-muted">{{ auth()->user()->main_role }}</span>
                 </div>
@@ -158,46 +160,50 @@
                                 d="M21 6h-2v9H6v2c0 .55.45 1 1 1h11l4 4V7c0-.55-.45-1-1-1zm-5 7c.55 0 1-.45 1-1V3c0-.55-.45-1-1-1H3c-.55 0-1 .45-1 1v14l4-4h10zM4.59 11.59l-.59.58V4h11v7H5.17l-.58.59z" />
                         </svg><span class="side-menu__label">الاعدادات</span><i class="angle fe fe-chevron-down"></i></a>
                     <ul class="slide-menu">
+                        @can('تصنيفات المخاطر')
+                            <li><a class="slide-item" href="{{ route('risk-category.index') }}">تصنيفات المخاطر</a></li>
+                        @endcan
+
                         @can('المرحلين')
-                        <li><a class="slide-item" href="{{ route('transporter.index') }}">المرحلين</a></li>
+                            <li><a class="slide-item" href="{{ route('transporter.index') }}">المرحلين</a></li>
                         @endcan
 
 
                         @can('نوع مخالفة')
-                        <li><a class="slide-item" href="{{ route('penaltytype.index') }}">أنواع المخالفات</a></li>
+                            <li><a class="slide-item" href="{{ route('penaltytype.index') }}">أنواع المخالفات</a></li>
                         @endcan
 
 
                         @can('تسجيل مخالف')
-                        <li><a class="slide-item" href="{{ route('penaltyowner.index') }}">مُخالِف</a></li>
+                            <li><a class="slide-item" href="{{ route('penaltyowner.index') }}">مُخالِف</a></li>
                         @endcan
 
                         @can('المحليات')
-                        <li><a class="slide-item" href="{{ route('locality.index') }}">المحليات</a></li>
+                            <li><a class="slide-item" href="{{ route('locality.index') }}">المحليات</a></li>
                         @endcan
 
                         @can('المدن')
-                        <li><a class="slide-item" href="{{ route('city.index') }}">المُدن</a></li>
+                            <li><a class="slide-item" href="{{ route('city.index') }}">المُدن</a></li>
                         @endcan
 
                         @can('الوحدات')
-                        <li><a class="slide-item" href="{{ route('unit.index') }}">الوحدات</a></li>
+                            <li><a class="slide-item" href="{{ route('unit.index') }}">الوحدات</a></li>
                         @endcan
 
                         @can('تصنيفات')
-                        <li><a class="slide-item" href="{{ route('category.index') }}">أصناف البضائع</a></li>
+                            <li><a class="slide-item" href="{{ route('category.index') }}">أصناف البضائع</a></li>
                         @endcan
 
                         @can('بضائع')
-                        <li><a class="slide-item" href="{{ route('item.index') }}"> البضائع</a></li>
+                            <li><a class="slide-item" href="{{ route('item.index') }}"> البضائع</a></li>
                         @endcan
 
                         @can('مسارات')
-                        <li><a class="slide-item" href="{{ route('track.index') }}"> المسارات</a></li>
+                            <li><a class="slide-item" href="{{ route('track.index') }}"> المسارات</a></li>
                         @endcan
 
                         @can('حموله')
-                        <li><a class="slide-item" href="{{ route('load.index') }}"> الحموله</a></li>
+                            <li><a class="slide-item" href="{{ route('load.index') }}"> الحموله</a></li>
                         @endcan
 
                     </ul>

@@ -30,8 +30,10 @@ use App\Http\Controllers\PenaltyOwnerController;
 use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\PrintCustomCertController;
 use App\Http\Controllers\CustomCertReportController;
+use App\Http\Controllers\RiskCategoryController;
 use App\Http\Controllers\UserManagement\RoleController;
 use App\Http\Controllers\UserManagement\UserController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -97,6 +99,7 @@ Route::resource('load', LoadController::class);
 Route::resource('setupmanfisto', ManfistoListController::class);
 Route::resource('setupgood', GoodListController::class);
 Route::resource('stockrecipt', StockReciptController::class);
+Route::resource('risk-category', RiskCategoryController::class);
 
 Route::resource('manfisto', ManfistoController::class);
 Route::resource('account', AccountController::class);

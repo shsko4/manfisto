@@ -77,6 +77,7 @@ class PermissionTableSeeder extends Seeder
             'لوائح',
 
             'بورصه',
+            'تصنيفات المخاطر',
 
 
         ];
