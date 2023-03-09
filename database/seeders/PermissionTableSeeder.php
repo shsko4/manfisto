@@ -78,6 +78,7 @@ class PermissionTableSeeder extends Seeder
 
             'بورصه',
             'تصنيفات المخاطر',
+            'انواع المخاطر',
 
 
         ];

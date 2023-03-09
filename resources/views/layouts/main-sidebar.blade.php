@@ -164,6 +164,10 @@
                             <li><a class="slide-item" href="{{ route('risk-category.index') }}">تصنيفات المخاطر</a></li>
                         @endcan
 
+                        @can('انواع المخاطر')
+                            <li><a class="slide-item" href="{{ route('risk-type.index') }}">انواع المخاطر</a></li>
+                        @endcan
+
                         @can('المرحلين')
                             <li><a class="slide-item" href="{{ route('transporter.index') }}">المرحلين</a></li>
                         @endcan

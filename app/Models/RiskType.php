@@ -2,18 +2,16 @@
 
 namespace App\Models;
 
-use App\Models\User;
-use App\Models\Office;
-use App\Models\RiskType;
+use App\Models\RiskCategory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class RiskCategory extends Model
+class RiskType extends Model
 {
     use HasFactory;
     use SoftDeletes;
-    protected $fillable = ['name','status',
+    protected $fillable = ['name','status','risk_category_id',
     'user_id',
     'office_id'];
     public function user()
@@ -25,9 +23,8 @@ class RiskCategory extends Model
     {
         return $this->belongsTo(Office::class);
     }
-    
-    public function risk_type()
+    public function risk_category()
     {
-        return $this->hasMany(RiskType::class,'risk_category_id');
+        return $this->belongsTo(RiskCategory::class);
     }
 }
