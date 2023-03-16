@@ -5,7 +5,9 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Database\Seeders\CreateUserSeeder;
+use Database\Seeders\RiskDegreeSeeder;
 use Database\Seeders\PermissionTableSeeder;
+use Database\Seeders\RiskPossibilitySeeder;
 use Database\Seeders\TransporterTableSeeder;
 
 class DatabaseSeeder extends Seeder
@@ -41,5 +43,7 @@ class DatabaseSeeder extends Seeder
         $this->call(LoadsTableSeeder::class);
         $this->call(ItemsTableSeeder::class);
         $this->call(ManfistoListsTableSeeder::class);
+        $this->call(RiskDegreeSeeder::class);
+        $this->call(RiskPossibilitySeeder::class);
     }
 }

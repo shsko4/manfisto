@@ -4,14 +4,14 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use Illuminate\Validation\Rule;
-use App\Models\RiskType as TheModel;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\ValidationException;
+use App\Models\RiskRecord as TheModel;
 
-class ManageRiskType extends Component
+class ManageRiskRecord extends Component
 {
     /*-------------------------------------------------------------------VARIABLES----------*/
-    public $model, $name,$status,$risk_category_id, $model_id,$user_id,$office_id;
+    public $model,$description, $risk_type_id,$risk_batch_id,$risk_degree_id,$risk_possibility_id,$status,
+     $model_id,$user_id,$office_id;
     public $updateMode = false;
 
     /*-------------------------------------------------------------------LISTNERS----------*/
@@ -21,21 +21,18 @@ class ManageRiskType extends Component
     protected function rules()
     {
         return [
-            'name' => ['required',
-            Rule::unique('risk_types')->where(function ($query) {
-                return $query->where('name', $this->name)
-                    ->where('id','!=', $this->model_id);
-            })],
             'status' => 'required',
-            'risk_category_id' => 'required',
+            'description' => 'required',
+            'risk_type_id' => 'required',
+            'risk_batch_id' => 'required',
+            'risk_degree_id' => 'required',
+            'risk_possibility_id' => 'required',
         ];
     }
 
     /*-------------------------------------------------------------------MESSAGES----------*/
     protected $messages = [
-        'name.unique' => ' النوع مسجل مسبقاً !',
         'status.required' => 'الحالة  مطلوبة !',
-        'risk_category_id.required' => 'إختر التصنيف !',
     ];
 
     /*-------------------------------------------------------------------STORE----------*/
@@ -43,14 +40,11 @@ class ManageRiskType extends Component
     {
         //dump(1);
         $validatedata = $this->validate();
-        //dd($validatedata['risk_category_id']);
-
-        //$validatedata['risk_category_id'] = $this->risk_category_id;
         $this->user_id = Auth::user()->id;
         $this->office_id = Auth::user()->office_id;
         $validatedata['user_id'] = $this->user_id;
         $validatedata['office_id'] = $this->office_id;
-        //dd($validatedata['risk_category_id']);
+
         TheModel::create($validatedata);
 
         $this->dispatchBrowserEvent('swal', [
@@ -75,8 +69,11 @@ class ManageRiskType extends Component
         //dd($id);
         $model = TheModel::findOrFail($id);
         $this->model_id = $id;
-        $this->name = $model->name;
-        $this->risk_category_id = $model->risk_category_id;
+        $this->description = $model->description;
+        $this->risk_type_id = $model->risk_type_id;
+        $this->risk_batch_id = $model->risk_batch_id;
+        $this->risk_degree_id = $model->risk_degree_id;
+        $this->risk_possibility_id = $model->risk_possibility_id;
         $this->status = $model->status;
 
         $this->updateMode = true;
@@ -161,10 +158,12 @@ class ManageRiskType extends Component
     {
         if($this->status == null)
         $this->status = 'نشط';
-        return view('livewire.manage-risk-type');
+
+        return view('livewire.manage-risk-record');
     }
     public function mount()
     {
         $this->status = 'نشط';
     }
 }
+

@@ -4,14 +4,13 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use Illuminate\Validation\Rule;
-use App\Models\RiskType as TheModel;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\ValidationException;
+use App\Models\RiskBatch as TheModel;
 
-class ManageRiskType extends Component
+class ManageRiskBatch extends Component
 {
     /*-------------------------------------------------------------------VARIABLES----------*/
-    public $model, $name,$status,$risk_category_id, $model_id,$user_id,$office_id;
+    public $model,$start_date, $end_date,$status, $model_id,$user_id,$office_id;
     public $updateMode = false;
 
     /*-------------------------------------------------------------------LISTNERS----------*/
@@ -21,21 +20,18 @@ class ManageRiskType extends Component
     protected function rules()
     {
         return [
-            'name' => ['required',
-            Rule::unique('risk_types')->where(function ($query) {
-                return $query->where('name', $this->name)
-                    ->where('id','!=', $this->model_id);
-            })],
             'status' => 'required',
-            'risk_category_id' => 'required',
+            'start_date' => 'required|date',
+            'end_date' => 'required|date|after_or_equal:start_date',
         ];
     }
 
     /*-------------------------------------------------------------------MESSAGES----------*/
     protected $messages = [
-        'name.unique' => ' النوع مسجل مسبقاً !',
+        'start_date.required' => ' ادخل تاريخ البداية !',
+        'end_date.required' => ' ادخل تاريخ النهاية !',
+        'end_date.after_or_equal' => '  تاريخ نهاية السجل يجب ان يكون بعد تاريخ البداية!',
         'status.required' => 'الحالة  مطلوبة !',
-        'risk_category_id.required' => 'إختر التصنيف !',
     ];
 
     /*-------------------------------------------------------------------STORE----------*/
@@ -43,14 +39,11 @@ class ManageRiskType extends Component
     {
         //dump(1);
         $validatedata = $this->validate();
-        //dd($validatedata['risk_category_id']);
-
-        //$validatedata['risk_category_id'] = $this->risk_category_id;
         $this->user_id = Auth::user()->id;
         $this->office_id = Auth::user()->office_id;
         $validatedata['user_id'] = $this->user_id;
         $validatedata['office_id'] = $this->office_id;
-        //dd($validatedata['risk_category_id']);
+
         TheModel::create($validatedata);
 
         $this->dispatchBrowserEvent('swal', [
@@ -75,8 +68,8 @@ class ManageRiskType extends Component
         //dd($id);
         $model = TheModel::findOrFail($id);
         $this->model_id = $id;
-        $this->name = $model->name;
-        $this->risk_category_id = $model->risk_category_id;
+        $this->start_date = $model->start_date;
+        $this->end_date = $model->end_date;
         $this->status = $model->status;
 
         $this->updateMode = true;
@@ -161,10 +154,12 @@ class ManageRiskType extends Component
     {
         if($this->status == null)
         $this->status = 'نشط';
-        return view('livewire.manage-risk-type');
+
+        return view('livewire.manage-risk-batch');
     }
     public function mount()
     {
         $this->status = 'نشط';
     }
 }
+

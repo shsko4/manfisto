@@ -1,39 +1,31 @@
 <form wire:submit.prevent="store()">
     <div class="row">
         <div class="col-span-12 ml-5">
-            <label for="exampleFormControlInput1" class="tx-17">النوع</label>
-            <input type="text" required class="form-control w-12" id="exampleFormControlInput1" placeholder=""
-                wire:model="name">
+            <label for="exampleFormControlInput1" class="tx-17">تايخ البداية</label>
+            <input class="form-control" placeholder="MM/DD/YYYY" type="date"
+                wire:model="start_date">
             <div>
-                @error('name')
+                @error('start_date')
                     <span class="text-danger mt-2">{{ $message }}</span>
                 @enderror
             </div>
 
 
         </div>
-        <div class="col-span-5 ml-5">
-            <label for="select-beast" class="tx-17">التصنيف</label>
-            <select name="risk_category_id" id="select-beast" class="form-control  nice-select  custom-select"
-                wire:model="risk_category_id" required>
-                <option value="null">
-                    --إختر التصنيف--
-                </option>
-                @foreach (App\Models\RiskCategory::orderBy('name')->get() as $category)
-                <option value="{{ $category->id }}">
-                    {{ $category->name }}
-                </option>
-            @endforeach
-            </select>
-
+        <div class="col-span-12 ml-5">
+            <label for="exampleFormControlInput1" class="tx-17">تايخ النهاية</label>
+            <input class="form-control" placeholder="MM/DD/YYYY" type="date"
+                wire:model="end_date">
             <div>
-                @error('risk_category_id')
+                @error('end_date')
                     <span class="text-danger mt-2">{{ $message }}</span>
                 @enderror
             </div>
+
+
         </div>
         <div class="col-span-5">
-            <label for="select-beast" class="tx-17">حالة نوع المخاطر</label>
+            <label for="select-beast" class="tx-17">الحالة</label>
             <select name="status" id="select-beast" class="form-control  nice-select  custom-select"
                 wire:model="status">
                 <option value="نشط" selected>نشط</option>

@@ -30,11 +30,15 @@ use App\Http\Controllers\PenaltyOwnerController;
 use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\PrintCustomCertController;
 use App\Http\Controllers\CustomCertReportController;
+use App\Http\Controllers\RiskBatchController;
 use App\Http\Controllers\RiskCategoryController;
+use App\Http\Controllers\RiskDegreeController;
+use App\Http\Controllers\RiskPossibilityController;
+use App\Http\Controllers\RiskRecordController;
 use App\Http\Controllers\RiskTypeController;
 use App\Http\Controllers\UserManagement\RoleController;
 use App\Http\Controllers\UserManagement\UserController;
-
+use App\Models\RiskBatch;
 
 /*
 |--------------------------------------------------------------------------
@@ -102,6 +106,10 @@ Route::resource('setupgood', GoodListController::class);
 Route::resource('stockrecipt', StockReciptController::class);
 Route::resource('risk-category', RiskCategoryController::class);
 Route::resource('risk-type', RiskTypeController::class);
+Route::resource('risk-batch', RiskBatchController::class);
+Route::resource('risk-degree', RiskDegreeController::class);
+Route::resource('risk-possibility', RiskPossibilityController::class);
+Route::resource('risk-record', RiskRecordController::class);
 
 Route::resource('manfisto', ManfistoController::class);
 Route::resource('account', AccountController::class);

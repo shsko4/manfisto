@@ -168,6 +168,13 @@
                             <li><a class="slide-item" href="{{ route('risk-type.index') }}">انواع المخاطر</a></li>
                         @endcan
 
+                        @can('حزم المخاطر')
+                            <li><a class="slide-item" href="{{ route('risk-batch.index') }}">حزم المخاطر</a></li>
+                        @endcan
+                        @can('سجل المخاطر')
+                            <li><a class="slide-item" href="{{ route('risk-record.index') }}">سجل المخاطر</a></li>
+                        @endcan
+
                         @can('المرحلين')
                             <li><a class="slide-item" href="{{ route('transporter.index') }}">المرحلين</a></li>
                         @endcan
